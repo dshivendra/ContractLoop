@@ -1,9 +1,9 @@
 # ContractLoop
 
-[![GitHub stars](https://img.shields.io/github/stars/YOUR_GITHUB_USERNAME/contractloop?style=flat-square)](https://github.com/YOUR_GITHUB_USERNAME/contractloop/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/YOUR_GITHUB_USERNAME/contractloop?style=flat-square)](https://github.com/YOUR_GITHUB_USERNAME/contractloop/network/members)
-[![GitHub issues](https://img.shields.io/github/issues/YOUR_GITHUB_USERNAME/contractloop?style=flat-square)](https://github.com/YOUR_GITHUB_USERNAME/contractloop/issues)
-[![GitHub license](https://img.shields.io/github/license/YOUR_GITHUB_USERNAME/contractloop?style=flat-square)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/dshivendra/contractloop?style=flat-square)](https://github.com/dshivendra/contractloop/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/dshivendra/contractloop?style=flat-square)](https://github.com/dshivendra/contractloop/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/dshivendra/contractloop?style=flat-square)](https://github.com/YOUR_GITHUB_USERNAME/contractloop/issues)
+[![GitHub license](https://img.shields.io/github/license/dshivendra/contractloop?style=flat-square)](LICENSE)
 
 ContractLoop is a contract-first, verification-first execution engine for reliable, policy-governed automation.
 ### Define the contract. Execute the action. Verify the outcome.
