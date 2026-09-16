@@ -2,8 +2,9 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/dshivendra/contractloop?style=flat-square)](https://github.com/dshivendra/contractloop/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/dshivendra/contractloop?style=flat-square)](https://github.com/dshivendra/contractloop/network/members)
-[![GitHub issues](https://img.shields.io/github/issues/dshivendra/contractloop?style=flat-square)](https://github.com/YOUR_GITHUB_USERNAME/contractloop/issues)
+[![GitHub issues](https://img.shields.io/github/issues/dshivendra/contractloop?style=flat-square)](https://github.com/dshivendra/contractloop/issues)
 [![GitHub license](https://img.shields.io/github/license/dshivendra/contractloop?style=flat-square)](LICENSE)
+[![Repository Views](https://hits.dwyl.com/dshivendra/contractloop.svg?style=flat-square)](https://github.com/dshivendra/contractloop)
 
 ContractLoop is a contract-first, verification-first execution engine for reliable, policy-governed automation.
 ### Define the contract. Execute the action. Verify the outcome.
