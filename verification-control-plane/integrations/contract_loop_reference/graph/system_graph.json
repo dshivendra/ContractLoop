@@ -1,0 +1,1142 @@
+{
+  "graph_id": "contract-loop-complete.v1",
+  "version": "1.1.0",
+  "nodes": [
+    {
+      "id": "trigger.jira",
+      "type": "trigger",
+      "label": "Jira"
+    },
+    {
+      "id": "trigger.linear",
+      "type": "trigger",
+      "label": "Linear"
+    },
+    {
+      "id": "trigger.github",
+      "type": "trigger",
+      "label": "GitHub"
+    },
+    {
+      "id": "trigger.schedule",
+      "type": "trigger",
+      "label": "Schedule/manual"
+    },
+    {
+      "id": "intake.verify",
+      "type": "event_verifier",
+      "label": "Verify webhook signature/tenant"
+    },
+    {
+      "id": "intake.normalize",
+      "type": "normalizer",
+      "label": "Normalize work item"
+    },
+    {
+      "id": "intake.dedupe",
+      "type": "idempotency",
+      "label": "Deduplicate or resume"
+    },
+    {
+      "id": "catalog.pin",
+      "type": "catalog_snapshot",
+      "label": "Pin catalog versions"
+    },
+    {
+      "id": "catalog.resolve",
+      "type": "catalog_resolver",
+      "label": "Select skills and agents"
+    },
+    {
+      "id": "graph.compile",
+      "type": "graph_compiler",
+      "label": "Compile task graph"
+    },
+    {
+      "id": "contract.lock",
+      "type": "contract_registry",
+      "label": "Validate/hash/lock contracts"
+    },
+    {
+      "id": "run.state",
+      "type": "run_state",
+      "label": "Create or resume run"
+    },
+    {
+      "id": "runner.rules",
+      "type": "rules",
+      "label": "Load rules"
+    },
+    {
+      "id": "runner.skills",
+      "type": "skill_loader",
+      "label": "Load selected skills"
+    },
+    {
+      "id": "runner.worktree",
+      "type": "worktree",
+      "label": "Create isolated checkout"
+    },
+    {
+      "id": "runner.maker",
+      "type": "maker_subagent",
+      "label": "Execute assigned work"
+    },
+    {
+      "id": "runner.permissions",
+      "type": "permission_guard",
+      "label": "Apply capabilities"
+    },
+    {
+      "id": "runner.pre",
+      "type": "hook",
+      "label": "PreToolUse"
+    },
+    {
+      "id": "runner.mcp",
+      "type": "mcp_gateway",
+      "label": "Use approved tools"
+    },
+    {
+      "id": "runner.post",
+      "type": "hook",
+      "label": "PostToolUse evidence"
+    },
+    {
+      "id": "runner.checker",
+      "type": "checker_subagent",
+      "label": "Read-only independent review"
+    },
+    {
+      "id": "runner.eval",
+      "type": "deterministic_gate",
+      "label": "Evaluate evidence"
+    },
+    {
+      "id": "retry.router",
+      "type": "retry_router",
+      "label": "Check retry budget"
+    },
+    {
+      "id": "repair.agent",
+      "type": "repair_subagent",
+      "label": "Bounded repair"
+    },
+    {
+      "id": "human.gate",
+      "type": "human_gate",
+      "label": "Authenticated human decision"
+    },
+    {
+      "id": "contract.revise",
+      "type": "contract_revision",
+      "label": "Create version and invalidate descendants"
+    },
+    {
+      "id": "ci.github",
+      "type": "ci_gate",
+      "label": "GitHub Actions required checks"
+    },
+    {
+      "id": "deploy.staging",
+      "type": "deploy_adapter",
+      "label": "Staging deploy"
+    },
+    {
+      "id": "deploy.health",
+      "type": "health_verifier",
+      "label": "Provider receipt and health"
+    },
+    {
+      "id": "deploy.production",
+      "type": "release",
+      "label": "Production with protected approval"
+    },
+    {
+      "id": "ops.observe",
+      "type": "operations",
+      "label": "SLO, incident, cost feedback"
+    },
+    {
+      "id": "improve",
+      "type": "improvement_loop",
+      "label": "Reviewed improvement proposal"
+    },
+    {
+      "id": "store.pg",
+      "type": "state_store",
+      "label": "Postgres: contract, graph, run, audit"
+    },
+    {
+      "id": "store.obj",
+      "type": "evidence_store",
+      "label": "Evidence/artifacts"
+    },
+    {
+      "id": "store.queue",
+      "type": "queue",
+      "label": "Durable event queue"
+    },
+    {
+      "id": "phase.l1",
+      "type": "contracted_layer",
+      "label": "Intake and planning",
+      "layer_id": "L1"
+    },
+    {
+      "id": "gate.l1",
+      "type": "gate",
+      "label": "Intake and planning evidence gate",
+      "layer_id": "L1"
+    },
+    {
+      "id": "phase.l2",
+      "type": "contracted_layer",
+      "label": "Discovery and system analysis",
+      "layer_id": "L2"
+    },
+    {
+      "id": "gate.l2",
+      "type": "gate",
+      "label": "Discovery and system analysis evidence gate",
+      "layer_id": "L2"
+    },
+    {
+      "id": "phase.l3",
+      "type": "contracted_layer",
+      "label": "Architecture and UX design",
+      "layer_id": "L3"
+    },
+    {
+      "id": "gate.l3",
+      "type": "gate",
+      "label": "Architecture and UX design evidence gate",
+      "layer_id": "L3"
+    },
+    {
+      "id": "phase.l4",
+      "type": "contracted_layer",
+      "label": "Build and infrastructure",
+      "layer_id": "L4"
+    },
+    {
+      "id": "gate.l4",
+      "type": "gate",
+      "label": "Build and infrastructure evidence gate",
+      "layer_id": "L4"
+    },
+    {
+      "id": "phase.l5",
+      "type": "contracted_layer",
+      "label": "Testing and quality",
+      "layer_id": "L5"
+    },
+    {
+      "id": "gate.l5",
+      "type": "gate",
+      "label": "Testing and quality evidence gate",
+      "layer_id": "L5"
+    },
+    {
+      "id": "phase.l6",
+      "type": "contracted_layer",
+      "label": "Deployment and release",
+      "layer_id": "L6"
+    },
+    {
+      "id": "gate.l6",
+      "type": "gate",
+      "label": "Deployment and release evidence gate",
+      "layer_id": "L6"
+    },
+    {
+      "id": "phase.l7",
+      "type": "contracted_layer",
+      "label": "Operations and evaluation",
+      "layer_id": "L7"
+    },
+    {
+      "id": "gate.l7",
+      "type": "gate",
+      "label": "Operations and evaluation evidence gate",
+      "layer_id": "L7"
+    },
+    {
+      "id": "cross.governance",
+      "type": "policy",
+      "label": "Governance/security/risk"
+    },
+    {
+      "id": "cross.knowledge",
+      "type": "traceability",
+      "label": "Knowledge/docs/collaboration"
+    },
+    {
+      "id": "cross.shared",
+      "type": "modeling",
+      "label": "Shared models"
+    },
+    {
+      "id": "overlay.migration",
+      "type": "profile",
+      "label": "Conditional modernization"
+    },
+    {
+      "id": "mcp.jira",
+      "type": "mcp_adapter",
+      "label": "Jira"
+    },
+    {
+      "id": "mcp.linear",
+      "type": "mcp_adapter",
+      "label": "Linear"
+    },
+    {
+      "id": "mcp.github",
+      "type": "mcp_adapter",
+      "label": "Github"
+    },
+    {
+      "id": "mcp.vercel",
+      "type": "mcp_adapter",
+      "label": "Vercel"
+    },
+    {
+      "id": "mcp.render",
+      "type": "mcp_adapter",
+      "label": "Render"
+    },
+    {
+      "id": "mcp.playwright",
+      "type": "mcp_adapter",
+      "label": "Playwright"
+    },
+    {
+      "id": "mcp.sentry",
+      "type": "mcp_adapter",
+      "label": "Sentry"
+    },
+    {
+      "id": "runtime.rules",
+      "type": "primitive",
+      "label": "rules"
+    },
+    {
+      "id": "runtime.skills",
+      "type": "primitive",
+      "label": "skills"
+    },
+    {
+      "id": "runtime.worktree",
+      "type": "primitive",
+      "label": "worktree"
+    },
+    {
+      "id": "runtime.subagents.maker",
+      "type": "primitive",
+      "label": "maker"
+    },
+    {
+      "id": "runtime.permissions",
+      "type": "primitive",
+      "label": "permissions"
+    },
+    {
+      "id": "runtime.hooks.pre_tool",
+      "type": "primitive",
+      "label": "pre_tool"
+    },
+    {
+      "id": "runtime.mcp_gateway",
+      "type": "primitive",
+      "label": "mcp_gateway"
+    },
+    {
+      "id": "runtime.hooks.post_tool",
+      "type": "primitive",
+      "label": "post_tool"
+    },
+    {
+      "id": "runtime.subagents.checker",
+      "type": "primitive",
+      "label": "checker"
+    },
+    {
+      "id": "runtime.deterministic_gate",
+      "type": "primitive",
+      "label": "deterministic_gate"
+    },
+    {
+      "id": "runtime.human_gate",
+      "type": "primitive",
+      "label": "human_gate"
+    },
+    {
+      "id": "runtime.state",
+      "type": "primitive",
+      "label": "state"
+    },
+    {
+      "id": "runtime.trigger",
+      "type": "primitive",
+      "label": "trigger"
+    }
+  ],
+  "edges": [
+    {
+      "from": "trigger.jira",
+      "to": "intake.verify",
+      "relation": "starts"
+    },
+    {
+      "from": "trigger.linear",
+      "to": "intake.verify",
+      "relation": "starts"
+    },
+    {
+      "from": "trigger.github",
+      "to": "intake.verify",
+      "relation": "starts"
+    },
+    {
+      "from": "trigger.schedule",
+      "to": "intake.verify",
+      "relation": "starts"
+    },
+    {
+      "from": "intake.verify",
+      "to": "intake.normalize",
+      "relation": "verified_event"
+    },
+    {
+      "from": "intake.normalize",
+      "to": "intake.dedupe",
+      "relation": "normalized_work"
+    },
+    {
+      "from": "intake.dedupe",
+      "to": "catalog.pin",
+      "relation": "new_or_resumable"
+    },
+    {
+      "from": "catalog.pin",
+      "to": "catalog.resolve",
+      "relation": "snapshot"
+    },
+    {
+      "from": "catalog.resolve",
+      "to": "graph.compile",
+      "relation": "selection"
+    },
+    {
+      "from": "graph.compile",
+      "to": "contract.lock",
+      "relation": "compiled_graph"
+    },
+    {
+      "from": "contract.lock",
+      "to": "run.state",
+      "relation": "locked_contracts"
+    },
+    {
+      "from": "runner.rules",
+      "to": "runner.skills",
+      "relation": "loads"
+    },
+    {
+      "from": "runner.skills",
+      "to": "runner.worktree",
+      "relation": "prepares"
+    },
+    {
+      "from": "runner.worktree",
+      "to": "runner.maker",
+      "relation": "isolates"
+    },
+    {
+      "from": "runner.maker",
+      "to": "runner.permissions",
+      "relation": "requests_action"
+    },
+    {
+      "from": "runner.permissions",
+      "to": "runner.pre",
+      "relation": "authorizes"
+    },
+    {
+      "from": "runner.pre",
+      "to": "runner.mcp",
+      "relation": "permits"
+    },
+    {
+      "from": "runner.mcp",
+      "to": "runner.post",
+      "relation": "returns_result"
+    },
+    {
+      "from": "runner.post",
+      "to": "runner.checker",
+      "relation": "evidence"
+    },
+    {
+      "from": "runner.checker",
+      "to": "runner.eval",
+      "relation": "review"
+    },
+    {
+      "from": "human.gate",
+      "to": "contract.revise",
+      "relation": "approve_or_revise"
+    },
+    {
+      "from": "contract.revise",
+      "to": "contract.lock",
+      "relation": "revalidate"
+    },
+    {
+      "from": "ci.github",
+      "to": "gate.l5",
+      "relation": "trusted_ci_evidence"
+    },
+    {
+      "from": "deploy.staging",
+      "to": "deploy.health",
+      "relation": "provider_receipt"
+    },
+    {
+      "from": "deploy.health",
+      "to": "gate.l6",
+      "relation": "health_evidence"
+    },
+    {
+      "from": "deploy.production",
+      "to": "ops.observe",
+      "relation": "deployment_events"
+    },
+    {
+      "from": "ops.observe",
+      "to": "phase.l7",
+      "relation": "operations_evidence"
+    },
+    {
+      "from": "gate.l7",
+      "to": "improve",
+      "relation": "run_closed"
+    },
+    {
+      "from": "improve",
+      "to": "contract.revise",
+      "relation": "reviewed_proposal_only"
+    },
+    {
+      "from": "run.state",
+      "to": "phase.l1",
+      "relation": "start_or_handoff"
+    },
+    {
+      "from": "phase.l1",
+      "to": "runner.rules",
+      "relation": "shared_runner"
+    },
+    {
+      "from": "runner.eval",
+      "to": "gate.l1",
+      "relation": "evidence_and_decision"
+    },
+    {
+      "from": "gate.l1",
+      "to": "phase.l2",
+      "relation": "advance",
+      "condition": "PASS"
+    },
+    {
+      "from": "gate.l1",
+      "to": "retry.router",
+      "relation": "failure_route",
+      "condition": "BLOCK"
+    },
+    {
+      "from": "retry.router",
+      "to": "repair.agent",
+      "relation": "repair",
+      "condition": "within_budget"
+    },
+    {
+      "from": "repair.agent",
+      "to": "phase.l1",
+      "relation": "retry_same_version"
+    },
+    {
+      "from": "gate.l1",
+      "to": "human.gate",
+      "relation": "escalate",
+      "condition": "risk_or_exhausted"
+    },
+    {
+      "from": "gate.l1",
+      "to": "phase.l2",
+      "relation": "start_or_handoff",
+      "condition": "PASS"
+    },
+    {
+      "from": "phase.l2",
+      "to": "runner.rules",
+      "relation": "shared_runner"
+    },
+    {
+      "from": "runner.eval",
+      "to": "gate.l2",
+      "relation": "evidence_and_decision"
+    },
+    {
+      "from": "gate.l2",
+      "to": "phase.l3",
+      "relation": "advance",
+      "condition": "PASS"
+    },
+    {
+      "from": "gate.l2",
+      "to": "retry.router",
+      "relation": "failure_route",
+      "condition": "BLOCK"
+    },
+    {
+      "from": "retry.router",
+      "to": "repair.agent",
+      "relation": "repair",
+      "condition": "within_budget"
+    },
+    {
+      "from": "repair.agent",
+      "to": "phase.l2",
+      "relation": "retry_same_version"
+    },
+    {
+      "from": "gate.l2",
+      "to": "human.gate",
+      "relation": "escalate",
+      "condition": "risk_or_exhausted"
+    },
+    {
+      "from": "gate.l2",
+      "to": "phase.l3",
+      "relation": "start_or_handoff",
+      "condition": "PASS"
+    },
+    {
+      "from": "phase.l3",
+      "to": "runner.rules",
+      "relation": "shared_runner"
+    },
+    {
+      "from": "runner.eval",
+      "to": "gate.l3",
+      "relation": "evidence_and_decision"
+    },
+    {
+      "from": "gate.l3",
+      "to": "phase.l4",
+      "relation": "advance",
+      "condition": "PASS"
+    },
+    {
+      "from": "gate.l3",
+      "to": "retry.router",
+      "relation": "failure_route",
+      "condition": "BLOCK"
+    },
+    {
+      "from": "retry.router",
+      "to": "repair.agent",
+      "relation": "repair",
+      "condition": "within_budget"
+    },
+    {
+      "from": "repair.agent",
+      "to": "phase.l3",
+      "relation": "retry_same_version"
+    },
+    {
+      "from": "gate.l3",
+      "to": "human.gate",
+      "relation": "escalate",
+      "condition": "risk_or_exhausted"
+    },
+    {
+      "from": "gate.l3",
+      "to": "phase.l4",
+      "relation": "start_or_handoff",
+      "condition": "PASS"
+    },
+    {
+      "from": "phase.l4",
+      "to": "runner.rules",
+      "relation": "shared_runner"
+    },
+    {
+      "from": "runner.eval",
+      "to": "gate.l4",
+      "relation": "evidence_and_decision"
+    },
+    {
+      "from": "gate.l4",
+      "to": "phase.l5",
+      "relation": "advance",
+      "condition": "PASS"
+    },
+    {
+      "from": "gate.l4",
+      "to": "retry.router",
+      "relation": "failure_route",
+      "condition": "BLOCK"
+    },
+    {
+      "from": "retry.router",
+      "to": "repair.agent",
+      "relation": "repair",
+      "condition": "within_budget"
+    },
+    {
+      "from": "repair.agent",
+      "to": "phase.l4",
+      "relation": "retry_same_version"
+    },
+    {
+      "from": "gate.l4",
+      "to": "human.gate",
+      "relation": "escalate",
+      "condition": "risk_or_exhausted"
+    },
+    {
+      "from": "gate.l4",
+      "to": "phase.l5",
+      "relation": "start_or_handoff",
+      "condition": "PASS"
+    },
+    {
+      "from": "phase.l5",
+      "to": "runner.rules",
+      "relation": "shared_runner"
+    },
+    {
+      "from": "runner.eval",
+      "to": "gate.l5",
+      "relation": "evidence_and_decision"
+    },
+    {
+      "from": "gate.l5",
+      "to": "phase.l6",
+      "relation": "advance",
+      "condition": "PASS"
+    },
+    {
+      "from": "gate.l5",
+      "to": "retry.router",
+      "relation": "failure_route",
+      "condition": "BLOCK"
+    },
+    {
+      "from": "retry.router",
+      "to": "repair.agent",
+      "relation": "repair",
+      "condition": "within_budget"
+    },
+    {
+      "from": "repair.agent",
+      "to": "phase.l5",
+      "relation": "retry_same_version"
+    },
+    {
+      "from": "gate.l5",
+      "to": "human.gate",
+      "relation": "escalate",
+      "condition": "risk_or_exhausted"
+    },
+    {
+      "from": "gate.l5",
+      "to": "phase.l6",
+      "relation": "start_or_handoff",
+      "condition": "PASS"
+    },
+    {
+      "from": "phase.l6",
+      "to": "runner.rules",
+      "relation": "shared_runner"
+    },
+    {
+      "from": "runner.eval",
+      "to": "gate.l6",
+      "relation": "evidence_and_decision"
+    },
+    {
+      "from": "gate.l6",
+      "to": "phase.l7",
+      "relation": "advance",
+      "condition": "PASS"
+    },
+    {
+      "from": "gate.l6",
+      "to": "retry.router",
+      "relation": "failure_route",
+      "condition": "BLOCK"
+    },
+    {
+      "from": "retry.router",
+      "to": "repair.agent",
+      "relation": "repair",
+      "condition": "within_budget"
+    },
+    {
+      "from": "repair.agent",
+      "to": "phase.l6",
+      "relation": "retry_same_version"
+    },
+    {
+      "from": "gate.l6",
+      "to": "human.gate",
+      "relation": "escalate",
+      "condition": "risk_or_exhausted"
+    },
+    {
+      "from": "gate.l6",
+      "to": "phase.l7",
+      "relation": "start_or_handoff",
+      "condition": "PASS"
+    },
+    {
+      "from": "phase.l7",
+      "to": "runner.rules",
+      "relation": "shared_runner"
+    },
+    {
+      "from": "runner.eval",
+      "to": "gate.l7",
+      "relation": "evidence_and_decision"
+    },
+    {
+      "from": "gate.l7",
+      "to": "retry.router",
+      "relation": "failure_route",
+      "condition": "BLOCK"
+    },
+    {
+      "from": "retry.router",
+      "to": "repair.agent",
+      "relation": "repair",
+      "condition": "within_budget"
+    },
+    {
+      "from": "repair.agent",
+      "to": "phase.l7",
+      "relation": "retry_same_version"
+    },
+    {
+      "from": "gate.l7",
+      "to": "human.gate",
+      "relation": "escalate",
+      "condition": "risk_or_exhausted"
+    },
+    {
+      "from": "cross.governance",
+      "to": "phase.l1",
+      "relation": "policy_gate"
+    },
+    {
+      "from": "cross.knowledge",
+      "to": "phase.l1",
+      "relation": "traceability"
+    },
+    {
+      "from": "cross.governance",
+      "to": "phase.l2",
+      "relation": "policy_gate"
+    },
+    {
+      "from": "cross.knowledge",
+      "to": "phase.l2",
+      "relation": "traceability"
+    },
+    {
+      "from": "cross.governance",
+      "to": "phase.l3",
+      "relation": "policy_gate"
+    },
+    {
+      "from": "cross.knowledge",
+      "to": "phase.l3",
+      "relation": "traceability"
+    },
+    {
+      "from": "cross.governance",
+      "to": "phase.l4",
+      "relation": "policy_gate"
+    },
+    {
+      "from": "cross.knowledge",
+      "to": "phase.l4",
+      "relation": "traceability"
+    },
+    {
+      "from": "cross.governance",
+      "to": "phase.l5",
+      "relation": "policy_gate"
+    },
+    {
+      "from": "cross.knowledge",
+      "to": "phase.l5",
+      "relation": "traceability"
+    },
+    {
+      "from": "cross.governance",
+      "to": "phase.l6",
+      "relation": "policy_gate"
+    },
+    {
+      "from": "cross.knowledge",
+      "to": "phase.l6",
+      "relation": "traceability"
+    },
+    {
+      "from": "cross.governance",
+      "to": "phase.l7",
+      "relation": "policy_gate"
+    },
+    {
+      "from": "cross.knowledge",
+      "to": "phase.l7",
+      "relation": "traceability"
+    },
+    {
+      "from": "cross.shared",
+      "to": "phase.l3",
+      "relation": "optional_design_models"
+    },
+    {
+      "from": "overlay.migration",
+      "to": "graph.compile",
+      "relation": "expand_graph",
+      "condition": "profile_selected"
+    },
+    {
+      "from": "phase.l5",
+      "to": "ci.github",
+      "relation": "run_checks"
+    },
+    {
+      "from": "gate.l5",
+      "to": "deploy.staging",
+      "relation": "deploy",
+      "condition": "PASS"
+    },
+    {
+      "from": "gate.l6",
+      "to": "deploy.production",
+      "relation": "release",
+      "condition": "PASS plus approval"
+    },
+    {
+      "from": "ops.observe",
+      "to": "trigger.github",
+      "relation": "followup_on_incident"
+    },
+    {
+      "from": "runner.mcp",
+      "to": "mcp.jira",
+      "relation": "allowlisted_route"
+    },
+    {
+      "from": "runner.mcp",
+      "to": "mcp.linear",
+      "relation": "allowlisted_route"
+    },
+    {
+      "from": "runner.mcp",
+      "to": "mcp.github",
+      "relation": "allowlisted_route"
+    },
+    {
+      "from": "runner.mcp",
+      "to": "mcp.vercel",
+      "relation": "allowlisted_route"
+    },
+    {
+      "from": "runner.mcp",
+      "to": "mcp.render",
+      "relation": "allowlisted_route"
+    },
+    {
+      "from": "runner.mcp",
+      "to": "mcp.playwright",
+      "relation": "allowlisted_route"
+    },
+    {
+      "from": "runner.mcp",
+      "to": "mcp.sentry",
+      "relation": "allowlisted_route"
+    },
+    {
+      "from": "trigger.jira",
+      "to": "store.queue",
+      "relation": "enqueue"
+    },
+    {
+      "from": "trigger.linear",
+      "to": "store.queue",
+      "relation": "enqueue"
+    },
+    {
+      "from": "trigger.github",
+      "to": "store.queue",
+      "relation": "enqueue"
+    },
+    {
+      "from": "trigger.schedule",
+      "to": "store.queue",
+      "relation": "enqueue"
+    },
+    {
+      "from": "catalog.pin",
+      "to": "store.pg",
+      "relation": "persist"
+    },
+    {
+      "from": "catalog.resolve",
+      "to": "store.pg",
+      "relation": "persist"
+    },
+    {
+      "from": "graph.compile",
+      "to": "store.pg",
+      "relation": "persist"
+    },
+    {
+      "from": "contract.lock",
+      "to": "store.pg",
+      "relation": "persist"
+    },
+    {
+      "from": "run.state",
+      "to": "store.pg",
+      "relation": "persist"
+    },
+    {
+      "from": "runner.post",
+      "to": "store.pg",
+      "relation": "persist"
+    },
+    {
+      "from": "runner.eval",
+      "to": "store.pg",
+      "relation": "persist"
+    },
+    {
+      "from": "human.gate",
+      "to": "store.pg",
+      "relation": "persist"
+    },
+    {
+      "from": "ops.observe",
+      "to": "store.pg",
+      "relation": "persist"
+    },
+    {
+      "from": "improve",
+      "to": "store.pg",
+      "relation": "persist"
+    },
+    {
+      "from": "runner.post",
+      "to": "store.obj",
+      "relation": "evidence"
+    },
+    {
+      "from": "ci.github",
+      "to": "store.obj",
+      "relation": "evidence"
+    },
+    {
+      "from": "deploy.health",
+      "to": "store.obj",
+      "relation": "evidence"
+    },
+    {
+      "from": "ops.observe",
+      "to": "store.obj",
+      "relation": "evidence"
+    },
+    {
+      "from": "runtime.rules",
+      "to": "runner.rules",
+      "relation": "implements"
+    },
+    {
+      "from": "runtime.skills",
+      "to": "runner.skills",
+      "relation": "implements"
+    },
+    {
+      "from": "runtime.worktree",
+      "to": "runner.worktree",
+      "relation": "implements"
+    },
+    {
+      "from": "runtime.subagents.maker",
+      "to": "runner.maker",
+      "relation": "implements"
+    },
+    {
+      "from": "runtime.permissions",
+      "to": "runner.permissions",
+      "relation": "implements"
+    },
+    {
+      "from": "runtime.hooks.pre_tool",
+      "to": "runner.pre",
+      "relation": "implements"
+    },
+    {
+      "from": "runtime.mcp_gateway",
+      "to": "runner.mcp",
+      "relation": "implements"
+    },
+    {
+      "from": "runtime.hooks.post_tool",
+      "to": "runner.post",
+      "relation": "implements"
+    },
+    {
+      "from": "runtime.subagents.checker",
+      "to": "runner.checker",
+      "relation": "implements"
+    },
+    {
+      "from": "runtime.deterministic_gate",
+      "to": "runner.eval",
+      "relation": "implements"
+    },
+    {
+      "from": "runtime.human_gate",
+      "to": "human.gate",
+      "relation": "implements"
+    },
+    {
+      "from": "runtime.state",
+      "to": "store.pg",
+      "relation": "implements"
+    },
+    {
+      "from": "runtime.trigger",
+      "to": "intake.verify",
+      "relation": "implements"
+    }
+  ],
+  "catalog_versions": {
+    "skills": "sdlc-skills-catalog.v1",
+    "agents": "agent-catalog.v1",
+    "primitives": "agentic-primitives.core.v1"
+  },
+  "orchestration": {
+    "workflow": "workflows/change-delivery.json",
+    "registry": "subagents/registry-and-bindings.json"
+  }
+}

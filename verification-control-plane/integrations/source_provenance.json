@@ -1,0 +1,10 @@
+[
+  {
+    "source": "contract_loop_complete_graph_v1.zip",
+    "sha256": "1a7c09bf101ff5ced9f720d67224a2b4cddd4950aea6acd0f2c070e625d88ab0"
+  },
+  {
+    "source": "loop_engine_v0.8.8_route_execution_proof.zip",
+    "sha256": "26c0d8899c4b51879be59242f2f11c84f7a6a4cb7a7cb4334f72fe2b07939dac"
+  }
+]

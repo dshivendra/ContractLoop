@@ -1,0 +1,53 @@
+{
+  "policy_version": "contract-hooks.v1",
+  "events": [
+    {
+      "event": "SessionStart",
+      "action": "Load locked run/contract/catalog snapshot."
+    },
+    {
+      "event": "SubagentStart",
+      "action": "Verify role and permissions."
+    },
+    {
+      "event": "PreToolUse",
+      "action": "Check tool/arguments against contract; deny out-of-scope actions."
+    },
+    {
+      "event": "PermissionRequest",
+      "action": "Require authenticated approval for sensitive action."
+    },
+    {
+      "event": "PermissionDenied",
+      "action": "Persist denial and route decision."
+    },
+    {
+      "event": "PostToolUse",
+      "action": "Capture result metadata and evidence references."
+    },
+    {
+      "event": "PostToolUseFailure",
+      "action": "Classify and budget retries."
+    },
+    {
+      "event": "SubagentStop",
+      "action": "Validate and persist structured output."
+    },
+    {
+      "event": "Stop",
+      "action": "Require decision persistence or escalation."
+    },
+    {
+      "event": "SessionEnd",
+      "action": "Persist checkpoint and audit event."
+    }
+  ],
+  "fail_closed_events": [
+    "PreToolUse",
+    "PermissionRequest",
+    "PostToolUse",
+    "SubagentStop",
+    "Stop"
+  ],
+  "external_enforcement": "Protected CI checks and deployment approvals remain authoritative."
+}

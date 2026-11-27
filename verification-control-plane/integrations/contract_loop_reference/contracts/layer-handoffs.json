@@ -1,0 +1,334 @@
+{
+  "contract_model_version": "contract-model.v1",
+  "phases": [
+    {
+      "contract_id_template": "contract.l1.v1",
+      "layer_id": "L1",
+      "name": "Intake and planning",
+      "skill_groups": [
+        {
+          "source": "SDLC",
+          "group": "requirements",
+          "count": 24
+        },
+        {
+          "source": "Independent",
+          "group": "requirements-and-planning",
+          "count": 24
+        },
+        {
+          "source": "Independent",
+          "group": "project-management",
+          "count": 17
+        }
+      ],
+      "agent_candidates": [
+        "full_sdlc_package::sdlc-orchestrator",
+        "full_sdlc_package::requirements-orchestrator",
+        "full_sdlc_package::requirements-management",
+        "full_sdlc_package::requirements-validator"
+      ],
+      "required_outputs": [
+        "work_item",
+        "acceptance_criteria",
+        "risk_profile",
+        "workflow_profile"
+      ],
+      "acceptance_checks": [
+        "ticket_schema_valid",
+        "acceptance_criteria_testable",
+        "risk_classified"
+      ],
+      "pass": "advance",
+      "block": "bounded_repair_then_recheck",
+      "exhausted_or_high_risk": "needs_human",
+      "not_applicable": "reason_and_policy_approval_required"
+    },
+    {
+      "contract_id_template": "contract.l2.v1",
+      "layer_id": "L2",
+      "name": "Discovery and system analysis",
+      "skill_groups": [
+        {
+          "source": "SDLC",
+          "group": "analysis",
+          "count": 23
+        },
+        {
+          "source": "Independent",
+          "group": "code-analysis",
+          "count": 14
+        },
+        {
+          "source": "Independent",
+          "group": "database",
+          "count": 14
+        }
+      ],
+      "agent_candidates": [
+        "full_sdlc_package::analysis-orchestrator",
+        "full_sdlc_package::analysis-code-analyst",
+        "full_sdlc_package::analysis-dependency-analyst",
+        "full_sdlc_package::analysis-logic-analyst",
+        "full_sdlc_package::analysis-validator"
+      ],
+      "required_outputs": [
+        "system_findings",
+        "dependency_map",
+        "impact_assessment",
+        "constraints"
+      ],
+      "acceptance_checks": [
+        "analysis_complete",
+        "dependencies_provenanced",
+        "impact_recorded"
+      ],
+      "pass": "advance",
+      "block": "bounded_repair_then_recheck",
+      "exhausted_or_high_risk": "needs_human",
+      "not_applicable": "reason_and_policy_approval_required"
+    },
+    {
+      "contract_id_template": "contract.l3.v1",
+      "layer_id": "L3",
+      "name": "Architecture and UX design",
+      "skill_groups": [
+        {
+          "source": "Independent",
+          "group": "architecture-and-design",
+          "count": 39
+        },
+        {
+          "source": "SDLC",
+          "group": "technical-design",
+          "count": 18
+        },
+        {
+          "source": "SDLC",
+          "group": "ux-design",
+          "count": 15
+        }
+      ],
+      "agent_candidates": [
+        "full_sdlc_package::technical-design-orchestrator",
+        "full_sdlc_package::technical-design-architect",
+        "full_sdlc_package::technical-design-api",
+        "full_sdlc_package::technical-design-data",
+        "full_sdlc_package::technical-design-security",
+        "full_sdlc_package::technical-design-validator",
+        "full_sdlc_package::ux-design-orchestrator",
+        "full_sdlc_package::ux-design-researcher",
+        "full_sdlc_package::ux-design-interaction",
+        "full_sdlc_package::ux-design-systems",
+        "full_sdlc_package::ux-design-validator"
+      ],
+      "required_outputs": [
+        "architecture_decisions",
+        "api_contracts",
+        "data_contracts",
+        "ux_spec",
+        "security_design"
+      ],
+      "acceptance_checks": [
+        "design_outputs_present",
+        "decisions_recorded",
+        "security_review_complete"
+      ],
+      "pass": "advance",
+      "block": "bounded_repair_then_recheck",
+      "exhausted_or_high_risk": "needs_human",
+      "not_applicable": "reason_and_policy_approval_required"
+    },
+    {
+      "contract_id_template": "contract.l4.v1",
+      "layer_id": "L4",
+      "name": "Build and infrastructure",
+      "skill_groups": [
+        {
+          "source": "SDLC",
+          "group": "development",
+          "count": 27
+        },
+        {
+          "source": "Independent",
+          "group": "development",
+          "count": 38
+        },
+        {
+          "source": "Independent",
+          "group": "infrastructure",
+          "count": 7
+        }
+      ],
+      "agent_candidates": [
+        "full_sdlc_package::development-orchestrator",
+        "full_sdlc_package::development-planner",
+        "full_sdlc_package::development-backend",
+        "full_sdlc_package::development-frontend",
+        "full_sdlc_package::development-database",
+        "full_sdlc_package::development-infrastructure",
+        "full_sdlc_package::development-reviewer"
+      ],
+      "required_outputs": [
+        "commit",
+        "change_summary",
+        "build_manifest",
+        "changed_files"
+      ],
+      "acceptance_checks": [
+        "change_scoped",
+        "commit_recorded",
+        "build_reproducible"
+      ],
+      "pass": "advance",
+      "block": "bounded_repair_then_recheck",
+      "exhausted_or_high_risk": "needs_human",
+      "not_applicable": "reason_and_policy_approval_required"
+    },
+    {
+      "contract_id_template": "contract.l5.v1",
+      "layer_id": "L5",
+      "name": "Testing and quality",
+      "skill_groups": [
+        {
+          "source": "SDLC",
+          "group": "testing",
+          "count": 21
+        },
+        {
+          "source": "Independent",
+          "group": "testing-and-qa",
+          "count": 80
+        }
+      ],
+      "agent_candidates": [
+        "full_sdlc_package::testing-orchestrator",
+        "full_sdlc_package::testing-strategist",
+        "full_sdlc_package::testing-automation",
+        "full_sdlc_package::testing-functional",
+        "full_sdlc_package::testing-nonfunctional",
+        "full_sdlc_package::testing-validator"
+      ],
+      "required_outputs": [
+        "test_results",
+        "coverage",
+        "scan_results",
+        "independent_review",
+        "artifact_digest"
+      ],
+      "acceptance_checks": [
+        "required_ci_passed",
+        "reviewer_read_only",
+        "evidence_bound_to_commit"
+      ],
+      "pass": "advance",
+      "block": "bounded_repair_then_recheck",
+      "exhausted_or_high_risk": "needs_human",
+      "not_applicable": "reason_and_policy_approval_required"
+    },
+    {
+      "contract_id_template": "contract.l6.v1",
+      "layer_id": "L6",
+      "name": "Deployment and release",
+      "skill_groups": [
+        {
+          "source": "SDLC",
+          "group": "deployment",
+          "count": 19
+        },
+        {
+          "source": "Independent",
+          "group": "deployment-and-cicd",
+          "count": 50
+        }
+      ],
+      "agent_candidates": [
+        "full_sdlc_package::deployment-orchestrator",
+        "full_sdlc_package::deployment-pipeline",
+        "full_sdlc_package::deployment-infrastructure",
+        "full_sdlc_package::deployment-release",
+        "full_sdlc_package::deployment-executor",
+        "full_sdlc_package::deployment-validator"
+      ],
+      "required_outputs": [
+        "approval_receipt",
+        "deployment_receipt",
+        "rollout_result",
+        "rollback_plan",
+        "health_check"
+      ],
+      "acceptance_checks": [
+        "approval_authenticated",
+        "provider_receipt_verified",
+        "health_check_passed"
+      ],
+      "pass": "advance",
+      "block": "bounded_repair_then_recheck",
+      "exhausted_or_high_risk": "needs_human",
+      "not_applicable": "reason_and_policy_approval_required"
+    },
+    {
+      "contract_id_template": "contract.l7.v1",
+      "layer_id": "L7",
+      "name": "Operations and evaluation",
+      "skill_groups": [
+        {
+          "source": "SDLC",
+          "group": "operations",
+          "count": 14
+        },
+        {
+          "source": "Independent",
+          "group": "incident-management",
+          "count": 27
+        },
+        {
+          "source": "Independent",
+          "group": "observability-and-monitoring",
+          "count": 34
+        },
+        {
+          "source": "Independent",
+          "group": "cost-and-optimization",
+          "count": 28
+        }
+      ],
+      "agent_candidates": [
+        "full_sdlc_package::operations-orchestrator",
+        "full_sdlc_package::operations-reliability",
+        "full_sdlc_package::operations-maintenance",
+        "full_sdlc_package::operations-validator"
+      ],
+      "required_outputs": [
+        "health_window",
+        "slo_result",
+        "incident_links",
+        "cost_delta",
+        "follow_up_items"
+      ],
+      "acceptance_checks": [
+        "health_window_complete",
+        "slo_evidence_recorded",
+        "follow_up_decision_recorded"
+      ],
+      "pass": "advance",
+      "block": "bounded_repair_then_recheck",
+      "exhausted_or_high_risk": "needs_human",
+      "not_applicable": "reason_and_policy_approval_required"
+    }
+  ],
+  "decisions": [
+    "PASS",
+    "BLOCK",
+    "NEEDS_HUMAN",
+    "NOT_APPLICABLE"
+  ],
+  "invariants": [
+    "Locked contracts are immutable; changes create a new version.",
+    "Every attempt is bounded and idempotent.",
+    "PASS requires all mandatory checks and evidence.",
+    "Simulated or skipped checks cannot certify production.",
+    "Upstream changes invalidate affected downstream evidence.",
+    "Production approval is authenticated and external to the model."
+  ]
+}

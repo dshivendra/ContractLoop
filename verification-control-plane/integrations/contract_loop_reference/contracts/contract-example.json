@@ -1,0 +1,40 @@
+{
+  "contract_id": "<work_item_id>:L1",
+  "version": 1,
+  "run_id": "<uuid>",
+  "work_item": {
+    "source": "jira|linear|github|manual",
+    "source_id": "<id>",
+    "normalized_hash": "sha256:<digest>"
+  },
+  "layer_id": "L1",
+  "state": "draft",
+  "catalog_snapshot": {
+    "skills": "sdlc-skills-catalog.v1",
+    "agents": "agent-catalog.v1",
+    "primitives": "agentic-primitives.core.v1",
+    "selected_skill_ids": [],
+    "selected_agent_ids": []
+  },
+  "inputs": [],
+  "scope": {
+    "allowed_paths": [],
+    "allowed_tools": [],
+    "network": "deny_by_default",
+    "environment": "local|ci|staging|production"
+  },
+  "required_outputs": [],
+  "acceptance_checks": [],
+  "attempt_budget": {
+    "max_attempts": 3,
+    "max_minutes": 30
+  },
+  "approval_policy": {
+    "required": false,
+    "approver_identity": null,
+    "reason": null
+  },
+  "evidence_refs": [],
+  "decision": null,
+  "contract_hash": null
+}

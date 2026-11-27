@@ -1,0 +1,31 @@
+{
+  "schema_id": "subagent-result.v1",
+  "required": [
+    "run_id",
+    "task_id",
+    "agent_id",
+    "status",
+    "output_contract_id",
+    "output",
+    "evidence_refs",
+    "changed_resources",
+    "tool_calls",
+    "warnings",
+    "errors",
+    "confidence",
+    "started_at",
+    "finished_at"
+  ],
+  "status": [
+    "completed",
+    "blocked",
+    "needs_human",
+    "failed",
+    "cancelled"
+  ],
+  "constraints": [
+    "claims cite evidence",
+    "record changed resources and revisions",
+    "partial or failed result cannot satisfy a gate"
+  ]
+}

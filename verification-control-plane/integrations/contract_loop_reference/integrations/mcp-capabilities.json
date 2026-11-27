@@ -1,0 +1,70 @@
+{
+  "policy": "Use webhooks/APIs for reliable event delivery. Expose narrow MCP capabilities through a policy gateway; MCP output alone is not trusted gate evidence.",
+  "providers": [
+    {
+      "id": "jira",
+      "role": "ticket source",
+      "capabilities": [
+        "read_issue",
+        "comment",
+        "transition_status"
+      ]
+    },
+    {
+      "id": "linear",
+      "role": "ticket source",
+      "capabilities": [
+        "read_issue",
+        "comment",
+        "update_status"
+      ]
+    },
+    {
+      "id": "github",
+      "role": "source, PR, CI",
+      "capabilities": [
+        "read_repository",
+        "create_pr",
+        "read_checks"
+      ],
+      "enforcement": "protected branch checks"
+    },
+    {
+      "id": "vercel",
+      "role": "deploy adapter",
+      "capabilities": [
+        "read_deployment",
+        "read_logs",
+        "deploy_staging"
+      ],
+      "enforcement": "production approval"
+    },
+    {
+      "id": "render",
+      "role": "deploy adapter",
+      "capabilities": [
+        "read_service",
+        "read_logs",
+        "deploy_staging"
+      ],
+      "enforcement": "production approval"
+    },
+    {
+      "id": "playwright",
+      "role": "optional browser verification",
+      "capabilities": [
+        "run_e2e",
+        "capture_evidence"
+      ]
+    },
+    {
+      "id": "sentry",
+      "role": "optional operations feedback",
+      "capabilities": [
+        "read_issues",
+        "read_traces"
+      ]
+    }
+  ],
+  "ticket_rule": "One source-of-truth tracker per work item; duplicate tickets require explicit sync policy."
+}
