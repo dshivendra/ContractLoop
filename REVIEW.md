@@ -17,8 +17,8 @@ current change. Public fixture keys establish no production security claim.
 
 For CI/policy changes check permissions, action pins, untrusted PR input, required
 status coverage, fresh per-run evidence, and separation of review from approval.
-No automatic merging is part of this pilot. Observe-mode Claude Approvals is
-advisory and does not enforce human review by itself.
+No automatic merging is part of this pilot. Codex policy decisions are
+advisory in observe mode and do not enforce GitHub human review by themselves.
 
 Report a concrete trigger, violated contract/invariant, relevant code and a
 reproducible check. Distinguish demonstrated defects from suggestions. Avoid
