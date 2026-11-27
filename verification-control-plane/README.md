@@ -15,8 +15,8 @@ python integrations/contract_loop_reference/validate_graph_package.py
 python tools/validate_schema.py
 ```
 
-For the full offline gate, including 70 synthetic cases, persisted evidence, exact
-replay under the recorded fault assumptions, and seven isolated source mutations:
+For the full offline gate, including 80 synthetic runs, persisted evidence, exact
+replay under the recorded fault assumptions, and eleven isolated source mutations:
 
 ```bash
 python tools/run_acceptance.py --output /tmp/contractloop-acceptance
@@ -30,6 +30,21 @@ The command records real subprocess commands, exit codes and logs in
 `acceptance_results.json` under the output directory; `FINAL_EVIDENCE_REPORT.md`
 explains the original baseline results. GitHub Actions runs the same acceptance
 command on Python 3.11 and 3.12 and uploads separate evidence for each run.
+
+The gate also records executable-line coverage using CPython's standard-library
+trace module. This is line coverage, not branch coverage. To independently replay
+a completed run without changing its database:
+
+```bash
+python tools/replay_audit.py --database /tmp/contractloop-acceptance/benchmark.sqlite --fault-plan /tmp/contractloop-acceptance/fault_plan.json
+```
+
+The fault plan explicitly reinstates the synthetic injected RuntimeError cases;
+ordinary records replay without injection. Omitting a needed plan fails with a
+replay mismatch. Engine version 0.1.1 fixes inconsistent snapshot composition,
+unclassified bank-only rows, blank currencies and overstated UNKNOWN assurance.
+Older audit records retain their original engine version and need that version's
+implementation for exact replay; they are not silently reinterpreted.
 
 `vcp/reconciliation.py` creates synthetic fixtures. `collect()` reads them in one
 SQLite read transaction. `VerificationEngine.verify()` validates approved contracts,

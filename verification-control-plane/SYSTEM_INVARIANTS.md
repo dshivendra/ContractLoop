@@ -26,3 +26,9 @@ means the named slice is tested, not that the complete architectural requirement
 
 Test method names above are prefixed `test_` in `tests/test_kernel.py`. All statuses
 are scoped to Phase 1; deferred controls are not counted as passed invariants.
+
+Completion regressions (`tests/test_completion.py`) strengthen INV-003/004/007/017:
+mixed failing snapshots remain UNKNOWN, unclassified bank-only input prevents
+SUCCESS, invalid currency is rejected, and UNKNOWN assurance is insufficient.
+Read-only replay and concurrent append tests strengthen the existing local slices
+of INV-001/013/015. External effect concurrency and crash/idempotency remain deferred.

@@ -7,12 +7,12 @@
 | Restricted predicates / non-vacuity / contradictions | logic.py finite comparison-cell satisfiability | LogicTests + contract rejection tests; implemented within budgets |
 | Correct three-value and failure polarity | classify, evaluate, negate | Exhaustive truth/classification oracle + targeted mutation; implemented |
 | Trusted outcome evidence distinct from claims | evidence.py; read-only reconciliation collector | Golden, legacy integration, signature and isolation tests; implemented |
-| Independent financial reference | Per-currency minor units, pinned source hash, IDs/matching/destination facts | Eight adversarial fixture variants + 40 generated destination cases; implemented |
+| Independent financial reference | Per-currency minor units, pinned source hash, IDs/matching/destination facts | Nine adversarial fixture variants + mixed-snapshot adversary + 40 generated destination cases; implemented |
 | Durable audit and replay | Ledger / VerificationEngine | Restart, tamper detection, benchmark input/result replay; implemented with stated fault assumptions |
 | Tamper/fabrication/staleness/conflict/error handling | Validation and UNKNOWN guard | Named kernel tests; implemented |
-| Independent verdict logic validation | 480 mandatory-classification combinations, Kleene table, seven isolated source mutations | run_acceptance.py / acceptance_results.json; implemented |
+| Independent verdict logic validation | 480 mandatory-classification combinations, Kleene table, eleven isolated source mutations | run_acceptance.py / acceptance_results.json; implemented |
 | Bounded evidence/expressions | count, AST depth/nodes, satisfiability cap | Budget and infinite iterator tests; implemented; hard time/memory sandbox deferred |
-| Coverage / latency / cost metrics | 70-case benchmark with full denominators | Final report; synthetic coverage only; code coverage/monetary cost unmeasured |
+| Coverage / latency / cost metrics | 80-run benchmark (16 scenarios × 5 repetitions) with full denominators | Final report and executable-line coverage; branch coverage and monetary cost unmeasured |
 | Required design artifacts | Named Markdown files + generated CONTRACT_SCHEMA.json | Included |
 | V0 natural-language intent/feasibility validation | Owner rationale and alignment reference only | Partial; machine semantic intent validation Phase 4 deferred |
 | Full domain model and all typed runtime ports | Phase 1 schemas and concrete APIs only | Domain/interface specs map every concept; later runtime models deferred |
@@ -23,3 +23,9 @@
 Phase 1 acceptance gate is the synthetic kernel gate, not completion of all frozen
 architecture requirements. No placeholder path is marked implemented. Success on
 these fixtures does not establish correctness for arbitrary business contracts.
+
+Completion evidence: `evidence/completion/acceptance_results.json` and its
+`coverage/coverage.json` supersede the original baseline measurements. The
+read-only replay command, explicit fault plan, four reproduced defect fixes,
+regression tests and source hashes close the remaining Phase 1 engineering items.
+Later-phase rows remain deferred, not failed or represented as implemented.

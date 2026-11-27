@@ -31,3 +31,11 @@ action TrajectoryRecorder, persistent cross-service EvidenceRepository,
 InvariantMonitor, CompositionalVerifier, RecoveryController, AttestationEngine.
 Future implementations must supply authorization, concurrency, budget and failure
 semantics at their actual boundaries before claiming those ports are supported.
+
+Engine 0.1.1 additions: `Ledger(path, read_only=True)` opens an existing database
+with SQLite mode=ro and refuses append. `VerificationEngine.replay_bundle(bundle)`
+checks pinned versions and exact recomputation for one bundle; callers reading
+ledgers must validate the chain first. `tools/replay_audit.py --database PATH
+[--fault-plan PATH]` checks the chain, then replays all verification bundles using
+the synthetic policy, explicitly reinstating only listed fixture fault injections.
+An absent required plan, unused task, unsupported fault type or mismatch fails.

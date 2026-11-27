@@ -16,6 +16,7 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 from vcp.engine import VerificationEngine
+from vcp import ENGINE_VERSION
 from vcp.models import Claim, Contract
 from vcp.reconciliation import NOW, collect, create_fixture, read_snapshot, reference_contract, run_for, synthetic_policy
 from vcp.security import approve, canonical, digest, seal_evidence
@@ -38,6 +39,10 @@ def mutation_checks():
       ("skip-scope-check","vcp/evidence.py",'if scope != expected:','if False:',"KernelTests.test_cross_scope_and_replay_rejected"),
       ("accept-stale-evidence","vcp/evidence.py",'if not 0 <= now - record.observed_at <= binding.max_age_seconds:','if False:',"KernelTests.test_stale_future_and_recollection"),
       ("skip-evidence-signature","vcp/evidence.py",'if not hmac.compare_digest(sign(dict(body, content_hash=record.content_hash), candidates[0].key), record.signature):','if False:',"KernelTests.test_fabricated_signature_rejected"),
+      ("mix-inconsistent-snapshots","vcp/evidence.py",'if key in incoherent:','if False:',"test_completion.CompletionRegressions.test_mixed_failing_snapshots_cannot_establish_success"),
+      ("ignore-bank-only-rows","vcp/reconciliation.py",'matching_correct=bool(matched and exact_ids and bank_ids_covered),unmatched_classified=bool(unmatched and exact_ids and bank_ids_covered),','matching_correct=bool(matched and exact_ids),unmatched_classified=bool(unmatched and exact_ids),',"test_completion.CompletionRegressions.test_bank_only_transaction_cannot_be_silently_ignored"),
+      ("overstate-unknown-assurance","vcp/engine.py",'assurance_complete = sufficient and assurance_ok and not faults and Truth.UNKNOWN not in mandatory','assurance_complete = True',"test_completion.CompletionRegressions.test_unsupported_condition_does_not_claim_sufficient_assurance"),
+      ("accept-empty-currency","vcp/reconciliation.py",'if any(type(r[1]) is not int or type(r[2]) is not str or not r[2].strip() for r in (*source,*bank,*dest)):','if False:',"test_completion.CompletionRegressions.test_empty_currency_is_not_valid_financial_evidence"),
     ]
     results=[]
     for name,path,old,new,test in mutations:
@@ -48,7 +53,8 @@ def mutation_checks():
             target=dest/path;text=target.read_text()
             if text.count(old) != 1: raise ValueError("mutation anchor not unique: "+name)
             target.write_text(text.replace(old,new,1))
-            result=run_command([sys.executable,"-m","unittest","-v","tests.test_kernel."+test],dest)
+            target=("tests."+test if test.startswith("test_completion.") else "tests.test_kernel."+test)
+            result=run_command([sys.executable,"-m","unittest","-v",target],dest)
             # A test assertion must fail; import/crash infrastructure errors do not count.
             detected=result["exit_code"] != 0 and "FAIL:" in result["stderr"] and "ERROR:" not in result["stderr"]
             results.append(dict(name=name,detected=detected,**result))
@@ -61,8 +67,8 @@ def benchmark(output):
     engine=VerificationEngine(policy,ledger)
     claim=Claim(execution_status="completed",message="Executor claims complete")
     scenarios={"correct":"SUCCESS",**{v:"FAILURE" for v in (
-        "false_success","partial","duplicate","source_missing","wrong_match","wrong_destination","wrong_currency","unauthorized")},
-        **{v:"UNKNOWN" for v in ("missing","stale","conflict","fabricated","fault")}}
+        "false_success","partial","duplicate","source_missing","wrong_match","wrong_destination","wrong_currency","unauthorized","extra_bank")},
+        **{v:"UNKNOWN" for v in ("missing","stale","conflict","fabricated","fault","mixed_snapshots")}}
     rows=[]
     try:
         fixture_dir=output/"fixtures";fixture_dir.mkdir(exist_ok=True)
@@ -73,6 +79,12 @@ def benchmark(output):
                 create_fixture(path,name if name in scenarios and expected == "FAILURE" else "correct")
                 snapshot=read_snapshot(path)
                 (snapshot_dir/(digest(snapshot)+".json")).write_text(canonical(snapshot)+"\n")
+                if name == "mixed_snapshots":
+                    mixed_paths=[]
+                    for variant in ("false_success","wrong_match"):
+                        other=fixture_dir/("mixed-"+variant+".sqlite");create_fixture(other,variant)
+                        s=read_snapshot(other);(snapshot_dir/(digest(s)+".json")).write_text(canonical(s)+"\n")
+                        mixed_paths.append(other)
                 for repeat in range(5):
                     run=run_for(contract,"bench/"+name+"/"+str(repeat),"exec/"+str(repeat))
                     evidence=collect(path,contract,run)
@@ -83,6 +95,10 @@ def benchmark(output):
                         body=evidence[0].model_dump(mode="json",exclude={"content_hash","signature"})
                         body.update(id="conflicting-observation",value=False)
                         evidence += (seal_evidence(body,policy.collectors[0].key),)
+                    if name == "mixed_snapshots":
+                        batches=[collect(p,contract,run) for p in mixed_paths]
+                        evidence=tuple(next(e for b in batches for e in b if e.fact==fact and e.value is True)
+                                       for fact in (e.fact for e in evidence))
                     start=time.perf_counter_ns()
                     if name == "fault":
                         with patch("vcp.engine.evaluate",side_effect=RuntimeError("injected")):
@@ -110,6 +126,9 @@ def benchmark(output):
             replay_count+=1
         chain=ledger.check()
     finally: ledger.close()
+    plan=dict(schema_version=1,engine_version=ENGINE_VERSION,
+              fault_injections={"bench/fault/"+str(i):"predicate-runtime-error" for i in range(5)})
+    (output/"fault_plan.json").write_text(json.dumps(plan,indent=2)+"\n")
     non_success=[r for r in rows if r["expected"] != "SUCCESS"]
     success=[r for r in rows if r["expected"] == "SUCCESS"]
     violations=[r for r in rows if r["expected"] == "FAILURE"]
@@ -140,18 +159,22 @@ def main():
     schema=Contract.model_json_schema();schema["$schema"]="https://json-schema.org/draft/2020-12/schema"
     (output/"CONTRACT_SCHEMA.json").write_text(json.dumps(schema,indent=2)+"\n")
     (output/"approved_contract.json").write_text(reference_contract().model_dump_json(indent=2)+"\n")
-    commands=[run_command([sys.executable,"-m","unittest","discover","-v"]),
+    commands=[run_command([sys.executable,"tools/run_coverage.py","--output",str(output/"coverage")]),
               run_command([sys.executable,"integrations/contract_loop_reference/validate_graph_package.py"]),
               run_command([sys.executable,"tools/validate_schema.py"])]
     mutations=mutation_checks()
     bench=benchmark(output)
+    commands.append(run_command([sys.executable,"tools/replay_audit.py","--database",str(output/"benchmark.sqlite"),
+                                 "--fault-plan",str(output/"fault_plan.json")]))
     installed={}
     for name in ("pydantic","jsonschema","pytest","hypothesis","z3-solver","cel-python","temporalio","langgraph","opentelemetry-api"):
         try: installed[name]=version(name)
         except PackageNotFoundError: installed[name]=None
     baseline=run_command(["git","rev-parse","HEAD"])
     manifest={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted((ROOT/"vcp").rglob("*.py"))}
-    result=dict(baseline_commit=baseline["stdout"].strip(),python=platform.python_version(),dependencies=installed,
+    result=dict(baseline_commit=baseline["stdout"].strip(),engine_version=ENGINE_VERSION,
+                python=platform.python_version(),dependencies=installed,
+                coverage=json.loads((output/"coverage/coverage.json").read_text()),
                 commands=commands,mutations=mutations,benchmark=bench,source_sha256=manifest,
                 status="PASS" if all(c["exit_code"]==0 for c in commands) and all(m["detected"] for m in mutations)
                        and bench["metrics"]["matches"]==bench["metrics"]["cases"] else "FAIL")

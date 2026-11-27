@@ -28,3 +28,10 @@ the package recipient. Trust-policy fingerprint pins key digests and scoped sour
 configuration. A version label alone is not trusted evidence. No guarantees are
 made about enterprise safety, availability, regulatory acceptance, real cash, or
 preventing external actions.
+
+Snapshot coherence is enforced after authenticity: one source/resource/state
+version has one artifact hash. Different authenticated hashes make that stream
+UNKNOWN; invalid observations cannot force a snapshot conflict. Different sources
+remain independent. Content hashes establish consistency under the declared
+collector trust assumptions, not factual truth. The replay fault plan is trusted
+experiment configuration and is never inferred from a model's completion claim.

@@ -62,11 +62,12 @@ class VerificationEngine:
         if not assurance_ok:
             mandatory.append(Truth.UNKNOWN)
         outcome = classify(mandatory,sufficient,faults)
+        assurance_complete = sufficient and assurance_ok and not faults and Truth.UNKNOWN not in mandatory
         body = dict(tenant=run.tenant,task_id=run.task_id,execution_id=run.execution_id,
                     contract_hash=run.contract_hash,contract_version=contract.version,
                     engine_version=ENGINE_VERSION,policy_hash=self.policy.fingerprint,evaluated_at=now,
                     execution_status=claim.execution_status,verdict=outcome,
-                    assurance="synthetic-point" if sufficient and assurance_ok and not faults else "insufficient",
+                    assurance="synthetic-point" if assurance_complete else "insufficient",
                     trust_assumptions=tuple(contract.assumptions)+self.policy.assumptions,
                     assessments=tuple(assessments),rejected_evidence=rejected,faults=tuple(faults))
         # Convert nested models before hashing; verdict ID binds all returned fields.
@@ -93,13 +94,16 @@ class VerificationEngine:
         for record in self.ledger.records():
             if record["kind"] != "verification":
                 continue
-            b = record["payload"]
-            if b["engine_version"] != ENGINE_VERSION or b["policy_hash"] != self.policy.fingerprint:
-                raise ValueError("replay version/policy unavailable")
-            result = self.compute(Contract.model_validate(b["contract"]),Approval.model_validate(b["approval"]),
-                                  Run.model_validate(b["run"]),tuple(Evidence.model_validate(e) for e in b["evidence"]),
-                                  Claim.model_validate(b["claim"]),b["now"])
-            if result.model_dump(mode="json") != b["verdict"]:
-                raise ValueError("replay mismatch")
-            replayed.append(result)
+            replayed.append(self.replay_bundle(record["payload"]))
         return tuple(replayed)
+
+    def replay_bundle(self, b):
+        """Recompute one bundle; callers loading a ledger must check its chain."""
+        if b["engine_version"] != ENGINE_VERSION or b["policy_hash"] != self.policy.fingerprint:
+            raise ValueError("replay version/policy unavailable")
+        result = self.compute(Contract.model_validate(b["contract"]),Approval.model_validate(b["approval"]),
+                              Run.model_validate(b["run"]),tuple(Evidence.model_validate(e) for e in b["evidence"]),
+                              Claim.model_validate(b["claim"]),b["now"])
+        if result.model_dump(mode="json") != b["verdict"]:
+            raise ValueError("replay mismatch")
+        return result

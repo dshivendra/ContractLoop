@@ -28,11 +28,19 @@ behavior, runs a focused independent acceptance test and requires an assertion
 failure. Import/infrastructure errors do not count as detection. Mutations: false
 violation → success; missing facts → success; inverted failure polarity; executor
 override; skipped scope; skipped freshness; skipped signature. This is a targeted
-seven-mutation campaign, not exhaustive mutation coverage.
+eleven-mutation campaign, not exhaustive mutation coverage.
 
-Benchmark: 14 distinct scenarios × 5 repeated runs = 70 evaluations. Repetition is
-for latency; it is not 70 independent business scenarios. Three-valued classifier
+Benchmark: 16 distinct scenarios × 5 repeated runs = 80 evaluations. Repetition is
+for latency; it is not 80 independent business scenarios. Three-valued classifier
 oracle covers 480 combinations; generated reconciliation test covers 40 seeded
 destination mutations. Historical invariant detection, execution controls, process
 crash effects, full concurrent mutations, production tenant boundaries and actual
 attestation validity are deliberately untested/deferred.
+
+Completion adds adversaries for mixed failing snapshots, bank-only rows, empty
+currency and overstated UNKNOWN assurance. Each exposed a pre-fix failure; all
+now have independent regressions and targeted mutations. Additional checks cover
+coherent re-observation, source separation, rejected-signature poisoning, readonly
+replay, explicit fault replay assumptions, version mismatch and concurrent audit
+appends. Standard-library trace records executable-line coverage; no branch or
+exhaustive mutation coverage is claimed.

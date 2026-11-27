@@ -9,7 +9,7 @@ verification → durable result. `HANDOFF.md` retains the complete frozen archit
 | Contract | Pydantic immutable typed AST, finite consistency check | Trusted synthetic approver |
 | Approval | HMAC binds the complete contract hash and approval time | Fixture owner key |
 | Observation | Read-only SQLite snapshot collector | Trusted adapter/fixture, separate executor identity |
-| Evidence | Hash/HMAC, scoped bindings, freshness, conflict checks | Trusted collector key and policy |
+| Evidence | Hash/HMAC, scoped bindings, freshness, fact/snapshot conflict checks | Trusted collector key and policy |
 | Verification | Strong Kleene predicates and mandatory guards | Deterministic kernel |
 | Persistence | SQLite append-only API, triggers, hash chain | Trusted database host |
 | Legacy bridge | Loop Engine/graph output → Claim | Untrusted report only |

@@ -16,3 +16,12 @@ No semantic architecture changes were made. Implementation limits are explicit.
 Z3, TLA+/TLC, OPA, Temporal, PostgreSQL, OpenTelemetry, LangGraph/MCP and
 in-toto/Sigstore were not integrated: no Phase 1 acceptance requirement currently
 needs those runtimes. See availability evidence in `INTEGRATION_REPORT.md`.
+
+Completion audit corrections in engine 0.1.1 preserve the frozen semantics:
+incompatible same-source snapshots cannot be combined; bank-only records cannot
+be ignored; blank currencies cannot be authoritative money observations; UNKNOWN
+conditions cannot claim sufficient assurance. Each defect was reproduced before
+its fix and has a regression plus targeted mutation. No approval requirement or
+success condition was weakened. Read-only replay and standard-library trace
+coverage improve reproducibility without new dependencies. Historical records
+retain their original engine version.

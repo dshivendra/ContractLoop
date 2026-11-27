@@ -20,3 +20,10 @@ required until a concrete test justifies it.
 Semantic change requires the handoff's deficiency, reproducible failing scenario,
 impacted invariants, alternatives, compatibility assessment, tests and owner approval.
 Adding dependencies or adapters must preserve the contract hash and truth semantics.
+
+Phase 1 completion audit (engine 0.1.1): the remaining reproduced evidence and
+collector defects are fixed; standalone readonly replay, explicit fault plans,
+line coverage and updated reproducible evidence are delivered. No outstanding
+Phase 1 code defect is known from the completed gate. See FINAL_EVIDENCE_REPORT.md
+for actual results and exact limitations. Shipping automation remains paused;
+review/merge and later phases are separate decisions.

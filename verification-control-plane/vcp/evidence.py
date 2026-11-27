@@ -50,8 +50,25 @@ def resolve(records, contract, run, policy, now):
             rejected.append(r.id + ":" + error)
         else:
             valid.setdefault(r.fact, {})[r.id] = r
+    # One source/resource/state version denotes one immutable snapshot.
+    snapshots = {}
+    for entries in valid.values():
+        for r in entries.values():
+            key = (r.source,r.resource,r.state_version)
+            snapshots.setdefault(key,set()).add(r.artifact_hash)
+    incoherent = {key for key, hashes in snapshots.items() if len(hashes) > 1}
     facts, support = {}, {}
     for fact, entries in valid.items():
+        coherent = {}
+        for identity,r in entries.items():
+            key = (r.source,r.resource,r.state_version)
+            if key in incoherent:
+                rejected.append(identity + ":snapshot-conflict")
+            else:
+                coherent[identity] = r
+        entries = coherent
+        if not entries:
+            continue
         values = {digest(r.value) for r in entries.values()}
         support[fact] = tuple(sorted(entries))
         if len(values) == 1:

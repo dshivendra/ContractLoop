@@ -65,3 +65,18 @@ contract, approval, run, raw evidence, claim, engine/policy version and assumpti
 Ordinary deterministic cases replay directly. Injected infrastructure faults require
 the same fault condition for exact recomputation, explicitly reinstated in the
 benchmark; replay without that fault is expected to reject a mismatch.
+
+Engine 0.1.1 completion corrections: authenticated observations from one
+source/resource/state version must identify one immutable snapshot artifact.
+Different hashes quarantine that source's facts as UNKNOWN before composition;
+passing facts from separate failing snapshots cannot create SUCCESS. Distinct
+independent sources may have distinct hashes. Invalid signatures cannot poison
+an otherwise coherent authenticated group. UNKNOWN mandatory conditions and
+incompatible fact types also force assurance=insufficient.
+
+The synthetic collector accounts for bank-only input rows and rejects blank
+currency observations instead of silently producing acceptable evidence. These
+implement the existing completeness/classification/typed-money conditions.
+`tools/replay_audit.py` opens the ledger read-only; a separate trusted fault-plan
+file explicitly reinstates synthetic fault cases. Earlier engine versions are
+rejected, not silently reinterpreted. Approved phase1/1 contract format is unchanged.

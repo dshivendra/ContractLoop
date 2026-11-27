@@ -1,11 +1,16 @@
 """SQLite append-only API with hash chain. DB administrator remains trusted."""
 import json
 import sqlite3
+from pathlib import Path
 from .security import canonical, digest
 
 
 class Ledger:
-    def __init__(self, path):
+    def __init__(self, path, *, read_only=False):
+        self.read_only = read_only
+        if read_only:
+            self.db = sqlite3.connect(Path(path).resolve().as_uri()+"?mode=ro",uri=True,timeout=5)
+            return
         self.db = sqlite3.connect(path, timeout=5, isolation_level=None)
         self.db.execute("PRAGMA journal_mode=WAL")
         self.db.execute("PRAGMA synchronous=FULL")
@@ -24,6 +29,8 @@ class Ledger:
         self.db.close()
 
     def append(self, kind, identity, payload):
+        if self.read_only:
+            raise PermissionError("read-only ledger")
         encoded = canonical(payload)
         self.db.execute("BEGIN IMMEDIATE")
         try:

@@ -57,7 +57,8 @@ def create_fixture(path, variant="correct"):
                  "wrong_match":"UPDATE destination SET status='matched' WHERE id='T3'",
                  "wrong_destination":"UPDATE destination SET account='CMS-WRONG' WHERE id='T2'",
                  "wrong_currency":"UPDATE destination SET currency='USD' WHERE id='T1'",
-                 "unauthorized":"UPDATE meta SET authorized=0"}
+                 "unauthorized":"UPDATE meta SET authorized=0",
+                 "extra_bank":"INSERT INTO bank VALUES ('BANK-ONLY',900,'INR')"}
     if variant in mutations:
         db.execute(mutations[variant])
     elif variant != "correct":
@@ -85,8 +86,8 @@ def observation_facts(snapshot,baseline_reference):
     source,bank,dest = snapshot["source"],snapshot["bank"],snapshot["destination"]
     if len(snapshot["meta"]) != 1 or len(snapshot["manifest"]) != 1:
         raise ValueError("malformed fixture metadata")
-    if any(type(r[1]) is not int or type(r[2]) is not str for r in (*source,*bank,*dest)):
-        raise ValueError("amounts must be integer minor units with explicit currency")
+    if any(type(r[1]) is not int or type(r[2]) is not str or not r[2].strip() for r in (*source,*bank,*dest)):
+        raise ValueError("amounts must be integer minor units with explicit nonempty currency")
     ids = lambda rows: [r[0] for r in rows]
     source_ids,bank_ids,dest_ids = ids(source),ids(bank),ids(dest)
     unique = all(len(v) == len(set(v)) for v in (source_ids,bank_ids,dest_ids))
@@ -110,9 +111,10 @@ def observation_facts(snapshot,baseline_reference):
         unmatched &= status in ("matched","unmatched") and ((status == "unmatched") == (not should_match))
         destination &= (amount,currency,account) == expected[1:4]
     exact_ids = set(dest_ids) == set(source_ids)
+    bank_ids_covered = set(bank_ids).issubset(set(source_ids))
     return dict(source_complete=len(source) == snapshot["manifest"][0][0] and "sha256:"+digest(tuple(sorted(source))) == baseline_reference,unique_ids=unique,
                 no_duplicates=len(dest_ids) == len(set(dest_ids)),amount_conserved=totals(source) == totals(dest),
-                matching_correct=bool(matched and exact_ids),unmatched_classified=bool(unmatched and exact_ids),
+                matching_correct=bool(matched and exact_ids and bank_ids_covered),unmatched_classified=bool(unmatched and exact_ids and bank_ids_covered),
                 destination_correct=bool(destination and exact_ids),authorized=snapshot["meta"][0][2] == 1)
 
 
