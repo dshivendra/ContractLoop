@@ -1,4 +1,5 @@
 """Reproducible offline acceptance, synthetic benchmark and targeted mutations."""
+import argparse
 import hashlib
 from importlib.metadata import version, PackageNotFoundError
 import json
@@ -127,12 +128,17 @@ def benchmark(output):
 
 
 def main():
-    output=ROOT/"evidence";output.mkdir(exist_ok=True)
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output",type=Path,default=ROOT/"evidence",
+                        help="New, empty directory for this run; never overwrites historical evidence")
+    args=parser.parse_args()
+    output=args.output.resolve()
+    output.mkdir(parents=True,exist_ok=True)
     # Refuse to overwrite existing audit history. Reproduce in a fresh extraction.
-    if (output/"benchmark.sqlite").exists():
-        raise SystemExit("benchmark.sqlite already exists; use a fresh extraction or rename evidence/benchmark.sqlite first")
+    if any(output.iterdir()):
+        raise SystemExit("output directory must be empty; choose a new --output directory")
     schema=Contract.model_json_schema();schema["$schema"]="https://json-schema.org/draft/2020-12/schema"
-    (ROOT/"CONTRACT_SCHEMA.json").write_text(json.dumps(schema,indent=2)+"\n")
+    (output/"CONTRACT_SCHEMA.json").write_text(json.dumps(schema,indent=2)+"\n")
     (output/"approved_contract.json").write_text(reference_contract().model_dump_json(indent=2)+"\n")
     commands=[run_command([sys.executable,"-m","unittest","discover","-v"]),
               run_command([sys.executable,"integrations/contract_loop_reference/validate_graph_package.py"]),

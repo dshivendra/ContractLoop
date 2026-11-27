@@ -1,0 +1,31 @@
+version: 1
+mode: observe
+rules:
+  - purpose: "Pilot human review on every change; Claude comments and cannot approve."
+    paths: ["**"]
+    verdict:
+      claude: comments
+      seats:
+        - count: 1
+          from: [humans, "!pr/authors"]
+      max_age: "1d"
+    advisory: [claude/code_review]
+  - purpose: "Preserve human review for verification authority and shipping controls under nested policies."
+    paths:
+      - ".claude/**"
+      - ".github/**"
+      - "CLAUDE.md"
+      - "REVIEW.md"
+      - "verification-control-plane/vcp/**"
+      - "verification-control-plane/tests/**"
+      - "verification-control-plane/tools/**"
+      - "verification-control-plane/CONTRACT_SCHEMA.json"
+      - "verification-control-plane/FORMAL_SEMANTICS.md"
+      - "verification-control-plane/TRUST_MODEL.md"
+    nested: inherit
+    verdict:
+      claude: comments
+      seats:
+        - count: 1
+          from: [humans, "!pr/authors"]
+      max_age: "1d"

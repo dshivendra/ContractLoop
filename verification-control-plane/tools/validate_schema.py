@@ -8,6 +8,10 @@ from vcp.models import Contract
 from vcp.reconciliation import reference_contract
 
 schema=json.loads((ROOT/"CONTRACT_SCHEMA.json").read_text())
+generated=Contract.model_json_schema()
+generated["$schema"]="https://json-schema.org/draft/2020-12/schema"
+if schema != generated:
+    raise SystemExit("Committed CONTRACT_SCHEMA.json differs from current Contract model; regenerate and review it")
 Draft202012Validator.check_schema(schema)
 validator=Draft202012Validator(schema)
 document=reference_contract().model_dump(mode="json")

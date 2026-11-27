@@ -10,6 +10,7 @@ The supplied environment already had both installed. No dependencies were fetche
 ```bash
 python -m pip install -e '.[qa]'
 python -m unittest discover -v
+python -m vcp
 python integrations/contract_loop_reference/validate_graph_package.py
 python tools/validate_schema.py
 ```
@@ -18,15 +19,17 @@ For the full offline gate, including 70 synthetic cases, persisted evidence, exa
 replay under the recorded fault assumptions, and seven isolated source mutations:
 
 ```bash
-python tools/run_acceptance.py
+python tools/run_acceptance.py --output /tmp/contractloop-acceptance
 ```
 
-Run this in a fresh source extraction: the command refuses to overwrite an existing
-`evidence/benchmark.sqlite`. In the delivered bundle, the previous run is already
-present; rename that file before running the gate again, or extract source to a new
-directory and omit the existing `evidence/` directory. Unit tests use temporary files.
+Choose a new, empty output directory for each run. Historical `evidence/` stays
+unchanged. Omitting `--output` selects `evidence/` and refuses an existing directory
+with files. Unit tests use temporary files. Schema validation also rejects drift
+between the committed schema and the current Contract model.
 The command records real subprocess commands, exit codes and logs in
-`evidence/acceptance_results.json`; `FINAL_EVIDENCE_REPORT.md` explains the results.
+`acceptance_results.json` under the output directory; `FINAL_EVIDENCE_REPORT.md`
+explains the original baseline results. GitHub Actions runs the same acceptance
+command on Python 3.11 and 3.12 and uploads separate evidence for each run.
 
 `vcp/reconciliation.py` creates synthetic fixtures. `collect()` reads them in one
 SQLite read transaction. `VerificationEngine.verify()` validates approved contracts,
