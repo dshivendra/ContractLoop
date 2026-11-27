@@ -1,0 +1,7 @@
+{
+  "version": "orchestration-index.v1.1",
+  "workflow": "workflows/change-delivery.json",
+  "diagram": "workflows/change-delivery.mmd",
+  "registry": "subagents/registry-and-bindings.json",
+  "dispatch_readiness": "Independent skills follow catalog ownership; SDLC skills have candidate pools pending human review."
+}

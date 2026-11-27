@@ -1,0 +1,179 @@
+{
+  "schema_version": "phase1/1",
+  "id": "cash-reconciliation",
+  "version": 1,
+  "tenant": "demo",
+  "owner": "fixture-owner",
+  "approver": "fixture-owner",
+  "objective": "Reconcile the synthetic INR batch exactly",
+  "acceptance_rationale": "Complete, conserved and correctly classified cash batch",
+  "resource": "fixture-batch/1",
+  "environment": "synthetic",
+  "baseline_reference": "sha256:5b5bbfc1273dad4cbaa8793e0cf869a0c2b9063783951e032ce7966053bfb989",
+  "intent_alignment_reference": "HANDOFF.md:Phase1",
+  "assumptions": [
+    "All amounts are integer INR minor units"
+  ],
+  "limitations": [
+    "Point-in-time snapshot only; no real external effects"
+  ],
+  "trust_policy_hash": "758cd28b9f099fdb21a974d86f8c775dc57876f6e04ea405d0edf31b5704d2bf",
+  "conditions": [
+    {
+      "id": "source_complete",
+      "role": "success",
+      "stage": "V3",
+      "temporal": "point",
+      "expression": {
+        "kind": "compare",
+        "fact": "source_complete",
+        "op": "eq",
+        "expected": true
+      }
+    },
+    {
+      "id": "unique_ids",
+      "role": "success",
+      "stage": "V3",
+      "temporal": "point",
+      "expression": {
+        "kind": "compare",
+        "fact": "unique_ids",
+        "op": "eq",
+        "expected": true
+      }
+    },
+    {
+      "id": "no_duplicates",
+      "role": "success",
+      "stage": "V3",
+      "temporal": "point",
+      "expression": {
+        "kind": "compare",
+        "fact": "no_duplicates",
+        "op": "eq",
+        "expected": true
+      }
+    },
+    {
+      "id": "amount_conserved",
+      "role": "success",
+      "stage": "V3",
+      "temporal": "point",
+      "expression": {
+        "kind": "compare",
+        "fact": "amount_conserved",
+        "op": "eq",
+        "expected": true
+      }
+    },
+    {
+      "id": "matching_correct",
+      "role": "success",
+      "stage": "V3",
+      "temporal": "point",
+      "expression": {
+        "kind": "compare",
+        "fact": "matching_correct",
+        "op": "eq",
+        "expected": true
+      }
+    },
+    {
+      "id": "unmatched_classified",
+      "role": "success",
+      "stage": "V3",
+      "temporal": "point",
+      "expression": {
+        "kind": "compare",
+        "fact": "unmatched_classified",
+        "op": "eq",
+        "expected": true
+      }
+    },
+    {
+      "id": "destination_correct",
+      "role": "success",
+      "stage": "V3",
+      "temporal": "point",
+      "expression": {
+        "kind": "compare",
+        "fact": "destination_correct",
+        "op": "eq",
+        "expected": true
+      }
+    },
+    {
+      "id": "authorized",
+      "role": "authorization",
+      "stage": "V3",
+      "temporal": "point",
+      "expression": {
+        "kind": "compare",
+        "fact": "authorized",
+        "op": "eq",
+        "expected": true
+      }
+    }
+  ],
+  "bindings": [
+    {
+      "fact": "source_complete",
+      "source": "fixture-ledger",
+      "collector": "independent-reader",
+      "method": "sqlite-snapshot",
+      "max_age_seconds": 60
+    },
+    {
+      "fact": "unique_ids",
+      "source": "fixture-ledger",
+      "collector": "independent-reader",
+      "method": "sqlite-snapshot",
+      "max_age_seconds": 60
+    },
+    {
+      "fact": "no_duplicates",
+      "source": "fixture-ledger",
+      "collector": "independent-reader",
+      "method": "sqlite-snapshot",
+      "max_age_seconds": 60
+    },
+    {
+      "fact": "amount_conserved",
+      "source": "fixture-ledger",
+      "collector": "independent-reader",
+      "method": "sqlite-snapshot",
+      "max_age_seconds": 60
+    },
+    {
+      "fact": "matching_correct",
+      "source": "fixture-ledger",
+      "collector": "independent-reader",
+      "method": "sqlite-snapshot",
+      "max_age_seconds": 60
+    },
+    {
+      "fact": "unmatched_classified",
+      "source": "fixture-ledger",
+      "collector": "independent-reader",
+      "method": "sqlite-snapshot",
+      "max_age_seconds": 60
+    },
+    {
+      "fact": "destination_correct",
+      "source": "fixture-ledger",
+      "collector": "independent-reader",
+      "method": "sqlite-snapshot",
+      "max_age_seconds": 60
+    },
+    {
+      "fact": "authorized",
+      "source": "fixture-ledger",
+      "collector": "independent-reader",
+      "method": "sqlite-snapshot",
+      "max_age_seconds": 60
+    }
+  ],
+  "max_evidence": 256,
+  "required_assurance": "synthetic-point"
+}

@@ -1,0 +1,25 @@
+{
+  "schema_id": "subagent-invocation.v1",
+  "required": [
+    "run_id",
+    "task_id",
+    "parent_task_id",
+    "agent_id",
+    "role",
+    "objective",
+    "input_contract_id",
+    "input",
+    "allowed_tools",
+    "allowed_paths",
+    "allowed_network",
+    "budget",
+    "deadline",
+    "trace_id"
+  ],
+  "constraints": [
+    "minimum necessary context",
+    "tool grants are intersection of catalog, policy, and task scope",
+    "no inherited permissions",
+    "worker cannot mutate workflow state or approve own output"
+  ]
+}

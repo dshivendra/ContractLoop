@@ -1,0 +1,260 @@
+{
+  "workflow_model_version": "workflow-model.v1.1",
+  "workflow_id": "contract-loop.change-delivery",
+  "purpose": "Deliver a ticket or repository change through governed build, verification, release, operations, and learning.",
+  "entrypoints": [
+    "trigger.jira",
+    "trigger.linear",
+    "trigger.github",
+    "trigger.schedule"
+  ],
+  "state_contract": {
+    "required": [
+      "run_id",
+      "source_event",
+      "work_item",
+      "repository",
+      "base_revision",
+      "idempotency_key",
+      "risk_profile",
+      "contracts",
+      "evidence",
+      "attempts",
+      "decision"
+    ],
+    "evidence_append_only": true,
+    "worker_state": "Workers return typed results; orchestrator alone mutates workflow state."
+  },
+  "steps": [
+    {
+      "step_id": "W0",
+      "name": "Accept and normalize event",
+      "layer_id": "L1",
+      "owner_agent_id": "full_sdlc_package::sdlc-orchestrator",
+      "worker_agent_ids": [],
+      "task_contracts": [
+        "verify trigger identity",
+        "normalize Jira/Linear/GitHub event",
+        "deduplicate event and idempotency keys"
+      ],
+      "output_contract": "normalized_event"
+    },
+    {
+      "step_id": "W1",
+      "name": "Plan and classify",
+      "layer_id": "L1",
+      "owner_agent_id": "full_sdlc_package::requirements-orchestrator",
+      "worker_agent_ids": [
+        "full_sdlc_package::requirements-functional",
+        "full_sdlc_package::requirements-management",
+        "full_sdlc_package::requirements-modeling",
+        "full_sdlc_package::requirements-nonfunctional",
+        "full_sdlc_package::requirements-validator"
+      ],
+      "task_contracts": [
+        "validate work item",
+        "define acceptance criteria",
+        "classify risk and workflow"
+      ],
+      "output_contract": "contract.l1.v1"
+    },
+    {
+      "step_id": "W2",
+      "name": "Discover and assess impact",
+      "layer_id": "L2",
+      "owner_agent_id": "full_sdlc_package::analysis-orchestrator",
+      "worker_agent_ids": [
+        "full_sdlc_package::analysis-code-analyst",
+        "full_sdlc_package::analysis-dependency-analyst",
+        "full_sdlc_package::analysis-logic-analyst",
+        "full_sdlc_package::analysis-validator"
+      ],
+      "task_contracts": [
+        "inspect repository and dependencies",
+        "assess data and runtime impact"
+      ],
+      "output_contract": "contract.l2.v1"
+    },
+    {
+      "step_id": "W3",
+      "name": "Design and threat review",
+      "layer_id": "L3",
+      "owner_agent_id": "full_sdlc_package::technical-design-orchestrator",
+      "worker_agent_ids": [
+        "full_sdlc_package::technical-design-architect",
+        "full_sdlc_package::technical-design-api",
+        "full_sdlc_package::technical-design-data",
+        "full_sdlc_package::technical-design-security",
+        "full_sdlc_package::technical-design-validator",
+        "full_sdlc_package::ux-design-orchestrator"
+      ],
+      "task_contracts": [
+        "produce design and API/data contracts",
+        "review security and risk",
+        "include UX when applicable"
+      ],
+      "output_contract": "contract.l3.v1"
+    },
+    {
+      "step_id": "W4",
+      "name": "Build scoped change",
+      "layer_id": "L4",
+      "owner_agent_id": "full_sdlc_package::development-orchestrator",
+      "worker_agent_ids": [
+        "full_sdlc_package::development-backend",
+        "full_sdlc_package::development-frontend",
+        "full_sdlc_package::development-database",
+        "full_sdlc_package::development-infrastructure",
+        "full_sdlc_package::development-test",
+        "full_sdlc_package::development-reviewer"
+      ],
+      "task_contracts": [
+        "apply approved plan",
+        "limit writes to granted paths",
+        "record diff and revision"
+      ],
+      "output_contract": "contract.l4.v1"
+    },
+    {
+      "step_id": "W5",
+      "name": "Verify and independent review",
+      "layer_id": "L5",
+      "owner_agent_id": "full_sdlc_package::testing-orchestrator",
+      "worker_agent_ids": [
+        "full_sdlc_package::testing-strategist",
+        "full_sdlc_package::testing-automation",
+        "full_sdlc_package::testing-functional",
+        "full_sdlc_package::testing-nonfunctional",
+        "full_sdlc_package::testing-validator",
+        "full_sdlc_package::development-reviewer"
+      ],
+      "task_contracts": [
+        "run required CI and scans",
+        "bind evidence to commit",
+        "read-only independent review"
+      ],
+      "output_contract": "contract.l5.v1"
+    },
+    {
+      "step_id": "W6",
+      "name": "Approve and deploy",
+      "layer_id": "L6",
+      "owner_agent_id": "full_sdlc_package::deployment-orchestrator",
+      "worker_agent_ids": [
+        "full_sdlc_package::deployment-pipeline",
+        "full_sdlc_package::deployment-infrastructure",
+        "full_sdlc_package::deployment-release",
+        "full_sdlc_package::deployment-executor",
+        "full_sdlc_package::deployment-validator"
+      ],
+      "task_contracts": [
+        "verify approval and artifact digest",
+        "deploy through provider",
+        "check rollout and health"
+      ],
+      "output_contract": "contract.l6.v1"
+    },
+    {
+      "step_id": "W7",
+      "name": "Observe and evaluate",
+      "layer_id": "L7",
+      "owner_agent_id": "full_sdlc_package::operations-orchestrator",
+      "worker_agent_ids": [
+        "full_sdlc_package::operations-reliability",
+        "full_sdlc_package::operations-maintenance",
+        "full_sdlc_package::operations-validator"
+      ],
+      "task_contracts": [
+        "observe health window and SLO",
+        "route unhealthy result to incident or approved rollback"
+      ],
+      "output_contract": "contract.l7.v1"
+    },
+    {
+      "step_id": "W8",
+      "name": "Learn and close loop",
+      "layer_id": "X2",
+      "owner_agent_id": "full_sdlc_package::sdlc-orchestrator",
+      "worker_agent_ids": [
+        "full_sdlc_package::traceability-analyzer",
+        "full_sdlc_package::github-sync",
+        "full_sdlc_package::jira-sync",
+        "full_sdlc_package::confluence-sync"
+      ],
+      "task_contracts": [
+        "write decision and evidence index",
+        "sync ticket and PR status",
+        "store verified outcome as advisory memory"
+      ],
+      "output_contract": "terminal_decision"
+    }
+  ],
+  "branch_rules": [
+    {
+      "when": "invalid_or_ambiguous_ticket",
+      "to": "needs_human",
+      "before": "W2"
+    },
+    {
+      "when": "verification_fails_and_attempts_remain",
+      "to": "W4",
+      "max_attempts": 2
+    },
+    {
+      "when": "verification_fails_and_attempts_exhausted",
+      "to": "needs_human"
+    },
+    {
+      "when": "high_risk_or_production_change",
+      "to": "human_approval",
+      "before": "W6"
+    },
+    {
+      "when": "post_deploy_health_fails",
+      "to": "approved_rollback_or_incident",
+      "before": "W8"
+    },
+    {
+      "when": "migration_overlay_detected",
+      "to": "M1_overlay",
+      "parallel_with": [
+        "W2",
+        "W3",
+        "W4",
+        "W5",
+        "W6"
+      ]
+    }
+  ],
+  "retry_policy": {
+    "retryable": [
+      "transient_provider_error",
+      "rate_limit",
+      "worker_timeout"
+    ],
+    "non_retryable": [
+      "contract_violation",
+      "permission_denied",
+      "policy_block",
+      "invalid_input"
+    ],
+    "max_attempts": 3,
+    "backoff": "exponential_with_jitter",
+    "side_effects": "reuse idempotency key and reconcile provider state before retry"
+  },
+  "parallelism": "Only independent analysis/design/test work may run concurrently; aggregate deterministically by task ID.",
+  "checkpointing": "Persist after each contract transition and external side effect.",
+  "cancellation": "Stop scheduling, cancel safe in-flight work, reconcile external side effects, save final checkpoint and audit event.",
+  "guards": {
+    "X1": "Deny-by-default hooks and policy checks on every tool call; audit decisions.",
+    "X2": "Subagent lifecycle hooks validate task context, trace IDs, output contracts, and evidence.",
+    "X3": "Versioned schemas; reject incompatible contracts.",
+    "review": "Independent reviewers are read-only and cannot review their own change.",
+    "deployment": "Graph approval is insufficient; protected CI/provider gate authorizes release.",
+    "approval_required": [
+      "production_deploy",
+      "high_risk_change",
+      "policy_override"
+    ]
+  }
+}

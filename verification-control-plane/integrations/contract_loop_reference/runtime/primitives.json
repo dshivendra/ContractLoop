@@ -1,0 +1,89 @@
+{
+  "primitive_catalog_version": "agentic-primitives.core.v1",
+  "items": [
+    {
+      "id": "runtime.rules",
+      "role": "Shared invariants and guidance; back enforcement with permissions/hooks."
+    },
+    {
+      "id": "runtime.skills",
+      "role": "Versioned phase playbooks selected from the XLSX catalog."
+    },
+    {
+      "id": "runtime.subagents.maker",
+      "role": "Performs assigned work in an isolated task context."
+    },
+    {
+      "id": "runtime.subagents.checker",
+      "role": "Independent read-only diff and evidence reviewer."
+    },
+    {
+      "id": "runtime.permissions",
+      "role": "Contract-scoped allow/ask/deny capabilities."
+    },
+    {
+      "id": "runtime.hooks.PreToolUse",
+      "role": "Validate tool name and arguments against the locked contract."
+    },
+    {
+      "id": "runtime.hooks.PermissionRequest",
+      "role": "Route sensitive actions to authenticated approval."
+    },
+    {
+      "id": "runtime.hooks.PermissionDenied",
+      "role": "Persist denial evidence and escalation decision."
+    },
+    {
+      "id": "runtime.hooks.PostToolUse",
+      "role": "Capture result metadata and evidence references."
+    },
+    {
+      "id": "runtime.hooks.PostToolUseFailure",
+      "role": "Classify failure and update retry budget."
+    },
+    {
+      "id": "runtime.hooks.SubagentStart",
+      "role": "Verify agent assignment, worktree, and permissions."
+    },
+    {
+      "id": "runtime.hooks.SubagentStop",
+      "role": "Validate structured worker output."
+    },
+    {
+      "id": "runtime.hooks.Stop",
+      "role": "Require persisted phase decision or escalation."
+    },
+    {
+      "id": "runtime.hooks.SessionStart",
+      "role": "Load run, contract, catalogs, and checkpoint."
+    },
+    {
+      "id": "runtime.hooks.SessionEnd",
+      "role": "Persist checkpoint and audit event."
+    },
+    {
+      "id": "runtime.worktree",
+      "role": "Isolate changes by task."
+    },
+    {
+      "id": "runtime.mcp_gateway",
+      "role": "Expose narrow external tool capabilities."
+    },
+    {
+      "id": "runtime.trigger",
+      "role": "Accept signed webhooks, schedules, and manual starts."
+    },
+    {
+      "id": "runtime.state",
+      "role": "Persist contracts, graph state, attempts, approvals, and audit."
+    },
+    {
+      "id": "runtime.deterministic_gate",
+      "role": "Evaluate machine-checkable criteria and fail closed."
+    },
+    {
+      "id": "runtime.human_gate",
+      "role": "Require authenticated approval for high-risk actions."
+    }
+  ]
+}

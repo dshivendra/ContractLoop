@@ -1,0 +1,910 @@
+{
+  "baseline_commit": "f5c1f70aa2784173ca62af8bc46b95b81c855384",
+  "python": "3.12.14",
+  "dependencies": {
+    "pydantic": "2.13.4",
+    "jsonschema": "4.26.0",
+    "pytest": null,
+    "hypothesis": null,
+    "z3-solver": null,
+    "cel-python": null,
+    "temporalio": null,
+    "langgraph": null,
+    "opentelemetry-api": null
+  },
+  "commands": [
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_graph_envelope_claim_adapter (tests.test_kernel.IntegrationTests.test_graph_envelope_claim_adapter) ... ok\ntest_legacy_false_success_requires_fresh_evidence (tests.test_kernel.IntegrationTests.test_legacy_false_success_requires_fresh_evidence) ... ok\ntest_legacy_loop_models_and_claim_adapter (tests.test_kernel.IntegrationTests.test_legacy_loop_models_and_claim_adapter) ... ok\ntest_approval_not_executor_modifiable (tests.test_kernel.KernelTests.test_approval_not_executor_modifiable) ... ok\ntest_approved_version_immutable (tests.test_kernel.KernelTests.test_approved_version_immutable) ... ok\ntest_audit_fault_returns_no_issued_success (tests.test_kernel.KernelTests.test_audit_fault_returns_no_issued_success) ... ok\ntest_audit_updates_and_deletes_rejected (tests.test_kernel.KernelTests.test_audit_updates_and_deletes_rejected) ... ok\ntest_claim_cannot_change_outcome (tests.test_kernel.KernelTests.test_claim_cannot_change_outcome) ... ok\ntest_conflicting_authenticated_evidence_unknown (tests.test_kernel.KernelTests.test_conflicting_authenticated_evidence_unknown) ... ok\ntest_contract_model_copy_bypass_is_revalidated (tests.test_kernel.KernelTests.test_contract_model_copy_bypass_is_revalidated) ... ok\ntest_correct_execution_success (tests.test_kernel.KernelTests.test_correct_execution_success) ... ok\ntest_cross_scope_and_replay_rejected (tests.test_kernel.KernelTests.test_cross_scope_and_replay_rejected) ... ok\ntest_detect_admin_tampering_and_replay_logic_mutation (tests.test_kernel.KernelTests.test_detect_admin_tampering_and_replay_logic_mutation) ... ok\ntest_errors_never_success (tests.test_kernel.KernelTests.test_errors_never_success) ... ok\ntest_evidence_budget_enforced (tests.test_kernel.KernelTests.test_evidence_budget_enforced) ... ok\ntest_fabricated_signature_rejected (tests.test_kernel.KernelTests.test_fabricated_signature_rejected) ... ok\ntest_failure_criteria_correct_polarity (tests.test_kernel.KernelTests.test_failure_criteria_correct_polarity) ... ok\ntest_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) ... ok\ntest_generated_financial_oracle (tests.test_kernel.KernelTests.test_generated_financial_oracle) ... ok\ntest_independence_and_binding (tests.test_kernel.KernelTests.test_independence_and_binding) ... ok\ntest_missing_evidence_is_unknown (tests.test_kernel.KernelTests.test_missing_evidence_is_unknown) ... ok\ntest_missing_guard_with_or_true_still_unknown (tests.test_kernel.KernelTests.test_missing_guard_with_or_true_still_unknown) ... ok\ntest_no_empty_contradictory_tautological_contracts (tests.test_kernel.KernelTests.test_no_empty_contradictory_tautological_contracts) ... ok\ntest_partial_claim_without_outcome_evidence_unknown (tests.test_kernel.KernelTests.test_partial_claim_without_outcome_evidence_unknown) ... ok\ntest_replay_restart_canonical_and_order_independence (tests.test_kernel.KernelTests.test_replay_restart_canonical_and_order_independence) ... ok\ntest_same_id_equivocation_unknown_and_duplicate_idempotent (tests.test_kernel.KernelTests.test_same_id_equivocation_unknown_and_duplicate_idempotent) ... ok\ntest_stale_future_and_recollection (tests.test_kernel.KernelTests.test_stale_future_and_recollection) ... ok\ntest_tampered_evidence_rejected (tests.test_kernel.KernelTests.test_tampered_evidence_rejected) ... ok\ntest_temporal_and_assurance_unsupported_unknown (tests.test_kernel.KernelTests.test_temporal_and_assurance_unsupported_unknown) ... ok\ntest_unapproved_or_tampered_contract_rejected (tests.test_kernel.KernelTests.test_unapproved_or_tampered_contract_rejected) ... ok\ntest_violation_overrides_missing_other_evidence (tests.test_kernel.KernelTests.test_violation_overrides_missing_other_evidence) ... ok\ntest_exhaustive_kleene_tables (tests.test_kernel.LogicTests.test_exhaustive_kleene_tables) ... ok\ntest_no_string_execution_or_coercion (tests.test_kernel.LogicTests.test_no_string_execution_or_coercion) ... ok\ntest_no_vacuous_empty_composition (tests.test_kernel.LogicTests.test_no_vacuous_empty_composition) ... ok\ntest_typed_leaf_and_nested_expressions (tests.test_kernel.LogicTests.test_typed_leaf_and_nested_expressions) ... ok\ntest_verdict_oracle_all_three_value_combinations (tests.test_kernel.LogicTests.test_verdict_oracle_all_three_value_combinations) ... ok\n\n----------------------------------------------------------------------\nRan 36 tests in 0.673s\n\nOK\n",
+      "elapsed_seconds": 0.9732921949998854
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "integrations/contract_loop_reference/validate_graph_package.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Graph package structurally valid: 73 nodes, 142 edges, 694 skills, 567 agent rows, 7 contracts.\nOrchestration valid: 9 steps, 567 agents, 694 skill bindings.\n",
+      "stderr": "",
+      "elapsed_seconds": 0.0606777030000103
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/validate_schema.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Draft 2020-12 schema valid; reference and roundtrip pass; empty conditions rejected. Semantic validation remains in Pydantic/kernel.\n",
+      "stderr": "",
+      "elapsed_seconds": 0.27592322700002114
+    }
+  ],
+  "mutations": [
+    {
+      "name": "violation-becomes-success",
+      "detected": true,
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "-v",
+        "tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) ... \n  test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='false_success') ... FAIL\n  test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='partial') ... FAIL\n  test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='duplicate') ... FAIL\n  test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='source_missing') ... FAIL\n  test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='wrong_match') ... FAIL\n  test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='wrong_destination') ... FAIL\n  test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='wrong_currency') ... FAIL\n  test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='unauthorized') ... FAIL\n\n======================================================================\nFAIL: test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='false_success')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmpz0idfnfq/tests/test_kernel.py\", line 115, in test_false_completion_and_partial_demonstrated\n    self.assertEqual(self.verify(evidence).verdict,\"FAILURE\")\nAssertionError: 'SUCCESS' != 'FAILURE'\n- SUCCESS\n+ FAILURE\n\n\n======================================================================\nFAIL: test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='partial')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmpz0idfnfq/tests/test_kernel.py\", line 115, in test_false_completion_and_partial_demonstrated\n    self.assertEqual(self.verify(evidence).verdict,\"FAILURE\")\nAssertionError: 'SUCCESS' != 'FAILURE'\n- SUCCESS\n+ FAILURE\n\n\n======================================================================\nFAIL: test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='duplicate')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmpz0idfnfq/tests/test_kernel.py\", line 115, in test_false_completion_and_partial_demonstrated\n    self.assertEqual(self.verify(evidence).verdict,\"FAILURE\")\nAssertionError: 'SUCCESS' != 'FAILURE'\n- SUCCESS\n+ FAILURE\n\n\n======================================================================\nFAIL: test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='source_missing')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmpz0idfnfq/tests/test_kernel.py\", line 115, in test_false_completion_and_partial_demonstrated\n    self.assertEqual(self.verify(evidence).verdict,\"FAILURE\")\nAssertionError: 'SUCCESS' != 'FAILURE'\n- SUCCESS\n+ FAILURE\n\n\n======================================================================\nFAIL: test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='wrong_match')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmpz0idfnfq/tests/test_kernel.py\", line 115, in test_false_completion_and_partial_demonstrated\n    self.assertEqual(self.verify(evidence).verdict,\"FAILURE\")\nAssertionError: 'SUCCESS' != 'FAILURE'\n- SUCCESS\n+ FAILURE\n\n\n======================================================================\nFAIL: test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='wrong_destination')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmpz0idfnfq/tests/test_kernel.py\", line 115, in test_false_completion_and_partial_demonstrated\n    self.assertEqual(self.verify(evidence).verdict,\"FAILURE\")\nAssertionError: 'SUCCESS' != 'FAILURE'\n- SUCCESS\n+ FAILURE\n\n\n======================================================================\nFAIL: test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='wrong_currency')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmpz0idfnfq/tests/test_kernel.py\", line 115, in test_false_completion_and_partial_demonstrated\n    self.assertEqual(self.verify(evidence).verdict,\"FAILURE\")\nAssertionError: 'SUCCESS' != 'FAILURE'\n- SUCCESS\n+ FAILURE\n\n\n======================================================================\nFAIL: test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='unauthorized')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmpz0idfnfq/tests/test_kernel.py\", line 115, in test_false_completion_and_partial_demonstrated\n    self.assertEqual(self.verify(evidence).verdict,\"FAILURE\")\nAssertionError: 'SUCCESS' != 'FAILURE'\n- SUCCESS\n+ FAILURE\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.053s\n\nFAILED (failures=8)\n",
+      "elapsed_seconds": 0.2907693309998649
+    },
+    {
+      "name": "missing-evidence-success",
+      "detected": true,
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "-v",
+        "tests.test_kernel.KernelTests.test_missing_evidence_is_unknown"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "test_missing_evidence_is_unknown (tests.test_kernel.KernelTests.test_missing_evidence_is_unknown) ... FAIL\n\n======================================================================\nFAIL: test_missing_evidence_is_unknown (tests.test_kernel.KernelTests.test_missing_evidence_is_unknown)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmpcoew875f/tests/test_kernel.py\", line 118, in test_missing_evidence_is_unknown\n    self.assertEqual(self.verify(()).verdict,\"UNKNOWN\")\nAssertionError: 'SUCCESS' != 'UNKNOWN'\n- SUCCESS\n+ UNKNOWN\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "elapsed_seconds": 0.24499926200019218
+    },
+    {
+      "name": "failure-criterion-wrong-polarity",
+      "detected": true,
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "-v",
+        "tests.test_kernel.KernelTests.test_failure_criteria_correct_polarity"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "test_failure_criteria_correct_polarity (tests.test_kernel.KernelTests.test_failure_criteria_correct_polarity) ... FAIL\n\n======================================================================\nFAIL: test_failure_criteria_correct_polarity (tests.test_kernel.KernelTests.test_failure_criteria_correct_polarity)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmpeqfjphle/tests/test_kernel.py\", line 187, in test_failure_criteria_correct_polarity\n    self.assertEqual(self.verify().verdict,\"SUCCESS\")\nAssertionError: 'FAILURE' != 'SUCCESS'\n- FAILURE\n+ SUCCESS\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "elapsed_seconds": 0.2435923160001039
+    },
+    {
+      "name": "executor-overrides-verifier",
+      "detected": true,
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "-v",
+        "tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) ... \n  test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='false_success') ... FAIL\n  test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='partial') ... FAIL\n  test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='duplicate') ... FAIL\n  test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='source_missing') ... FAIL\n  test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='wrong_match') ... FAIL\n  test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='wrong_destination') ... FAIL\n  test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='wrong_currency') ... FAIL\n  test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='unauthorized') ... FAIL\n\n======================================================================\nFAIL: test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='false_success')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmp35udl0cq/tests/test_kernel.py\", line 115, in test_false_completion_and_partial_demonstrated\n    self.assertEqual(self.verify(evidence).verdict,\"FAILURE\")\nAssertionError: 'SUCCESS' != 'FAILURE'\n- SUCCESS\n+ FAILURE\n\n\n======================================================================\nFAIL: test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='partial')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmp35udl0cq/tests/test_kernel.py\", line 115, in test_false_completion_and_partial_demonstrated\n    self.assertEqual(self.verify(evidence).verdict,\"FAILURE\")\nAssertionError: 'SUCCESS' != 'FAILURE'\n- SUCCESS\n+ FAILURE\n\n\n======================================================================\nFAIL: test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='duplicate')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmp35udl0cq/tests/test_kernel.py\", line 115, in test_false_completion_and_partial_demonstrated\n    self.assertEqual(self.verify(evidence).verdict,\"FAILURE\")\nAssertionError: 'SUCCESS' != 'FAILURE'\n- SUCCESS\n+ FAILURE\n\n\n======================================================================\nFAIL: test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='source_missing')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmp35udl0cq/tests/test_kernel.py\", line 115, in test_false_completion_and_partial_demonstrated\n    self.assertEqual(self.verify(evidence).verdict,\"FAILURE\")\nAssertionError: 'SUCCESS' != 'FAILURE'\n- SUCCESS\n+ FAILURE\n\n\n======================================================================\nFAIL: test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='wrong_match')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmp35udl0cq/tests/test_kernel.py\", line 115, in test_false_completion_and_partial_demonstrated\n    self.assertEqual(self.verify(evidence).verdict,\"FAILURE\")\nAssertionError: 'SUCCESS' != 'FAILURE'\n- SUCCESS\n+ FAILURE\n\n\n======================================================================\nFAIL: test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='wrong_destination')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmp35udl0cq/tests/test_kernel.py\", line 115, in test_false_completion_and_partial_demonstrated\n    self.assertEqual(self.verify(evidence).verdict,\"FAILURE\")\nAssertionError: 'SUCCESS' != 'FAILURE'\n- SUCCESS\n+ FAILURE\n\n\n======================================================================\nFAIL: test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='wrong_currency')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmp35udl0cq/tests/test_kernel.py\", line 115, in test_false_completion_and_partial_demonstrated\n    self.assertEqual(self.verify(evidence).verdict,\"FAILURE\")\nAssertionError: 'SUCCESS' != 'FAILURE'\n- SUCCESS\n+ FAILURE\n\n\n======================================================================\nFAIL: test_false_completion_and_partial_demonstrated (tests.test_kernel.KernelTests.test_false_completion_and_partial_demonstrated) (variant='unauthorized')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmp35udl0cq/tests/test_kernel.py\", line 115, in test_false_completion_and_partial_demonstrated\n    self.assertEqual(self.verify(evidence).verdict,\"FAILURE\")\nAssertionError: 'SUCCESS' != 'FAILURE'\n- SUCCESS\n+ FAILURE\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.051s\n\nFAILED (failures=8)\n",
+      "elapsed_seconds": 0.3238556039998457
+    },
+    {
+      "name": "skip-scope-check",
+      "detected": true,
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "-v",
+        "tests.test_kernel.KernelTests.test_cross_scope_and_replay_rejected"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "test_cross_scope_and_replay_rejected (tests.test_kernel.KernelTests.test_cross_scope_and_replay_rejected) ... \n  test_cross_scope_and_replay_rejected (tests.test_kernel.KernelTests.test_cross_scope_and_replay_rejected) (field='task_id') ... FAIL\n  test_cross_scope_and_replay_rejected (tests.test_kernel.KernelTests.test_cross_scope_and_replay_rejected) (field='execution_id') ... FAIL\n  test_cross_scope_and_replay_rejected (tests.test_kernel.KernelTests.test_cross_scope_and_replay_rejected) (field='contract_hash') ... FAIL\n  test_cross_scope_and_replay_rejected (tests.test_kernel.KernelTests.test_cross_scope_and_replay_rejected) (field='resource') ... FAIL\n  test_cross_scope_and_replay_rejected (tests.test_kernel.KernelTests.test_cross_scope_and_replay_rejected) (field='state_version') ... FAIL\n\n======================================================================\nFAIL: test_cross_scope_and_replay_rejected (tests.test_kernel.KernelTests.test_cross_scope_and_replay_rejected) (field='task_id')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmp15z9m23b/tests/test_kernel.py\", line 152, in test_cross_scope_and_replay_rejected\n    self.assertEqual(self.verify((other,)+self.evidence[1:]).verdict,\"UNKNOWN\")\nAssertionError: 'SUCCESS' != 'UNKNOWN'\n- SUCCESS\n+ UNKNOWN\n\n\n======================================================================\nFAIL: test_cross_scope_and_replay_rejected (tests.test_kernel.KernelTests.test_cross_scope_and_replay_rejected) (field='execution_id')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmp15z9m23b/tests/test_kernel.py\", line 152, in test_cross_scope_and_replay_rejected\n    self.assertEqual(self.verify((other,)+self.evidence[1:]).verdict,\"UNKNOWN\")\nAssertionError: 'SUCCESS' != 'UNKNOWN'\n- SUCCESS\n+ UNKNOWN\n\n\n======================================================================\nFAIL: test_cross_scope_and_replay_rejected (tests.test_kernel.KernelTests.test_cross_scope_and_replay_rejected) (field='contract_hash')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmp15z9m23b/tests/test_kernel.py\", line 152, in test_cross_scope_and_replay_rejected\n    self.assertEqual(self.verify((other,)+self.evidence[1:]).verdict,\"UNKNOWN\")\nAssertionError: 'SUCCESS' != 'UNKNOWN'\n- SUCCESS\n+ UNKNOWN\n\n\n======================================================================\nFAIL: test_cross_scope_and_replay_rejected (tests.test_kernel.KernelTests.test_cross_scope_and_replay_rejected) (field='resource')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmp15z9m23b/tests/test_kernel.py\", line 152, in test_cross_scope_and_replay_rejected\n    self.assertEqual(self.verify((other,)+self.evidence[1:]).verdict,\"UNKNOWN\")\nAssertionError: 'SUCCESS' != 'UNKNOWN'\n- SUCCESS\n+ UNKNOWN\n\n\n======================================================================\nFAIL: test_cross_scope_and_replay_rejected (tests.test_kernel.KernelTests.test_cross_scope_and_replay_rejected) (field='state_version')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmp15z9m23b/tests/test_kernel.py\", line 152, in test_cross_scope_and_replay_rejected\n    self.assertEqual(self.verify((other,)+self.evidence[1:]).verdict,\"UNKNOWN\")\nAssertionError: 'SUCCESS' != 'UNKNOWN'\n- SUCCESS\n+ UNKNOWN\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.029s\n\nFAILED (failures=5)\n",
+      "elapsed_seconds": 0.27708589899998515
+    },
+    {
+      "name": "accept-stale-evidence",
+      "detected": true,
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "-v",
+        "tests.test_kernel.KernelTests.test_stale_future_and_recollection"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "test_stale_future_and_recollection (tests.test_kernel.KernelTests.test_stale_future_and_recollection) ... FAIL\n\n======================================================================\nFAIL: test_stale_future_and_recollection (tests.test_kernel.KernelTests.test_stale_future_and_recollection)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmprm1ymnsj/tests/test_kernel.py\", line 131, in test_stale_future_and_recollection\n    self.assertEqual(self.verify(now=NOW+61).verdict,\"UNKNOWN\")\nAssertionError: 'SUCCESS' != 'UNKNOWN'\n- SUCCESS\n+ UNKNOWN\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.013s\n\nFAILED (failures=1)\n",
+      "elapsed_seconds": 0.2921931860000768
+    },
+    {
+      "name": "skip-evidence-signature",
+      "detected": true,
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "-v",
+        "tests.test_kernel.KernelTests.test_fabricated_signature_rejected"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "test_fabricated_signature_rejected (tests.test_kernel.KernelTests.test_fabricated_signature_rejected) ... FAIL\n\n======================================================================\nFAIL: test_fabricated_signature_rejected (tests.test_kernel.KernelTests.test_fabricated_signature_rejected)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmpcpahhp1l/tests/test_kernel.py\", line 146, in test_fabricated_signature_rejected\n    self.assertEqual(self.verify((record,)+self.evidence[1:]).verdict,\"UNKNOWN\")\nAssertionError: 'SUCCESS' != 'UNKNOWN'\n- SUCCESS\n+ UNKNOWN\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "elapsed_seconds": 0.28871252399994773
+    }
+  ],
+  "benchmark": {
+    "metrics": {
+      "cases": 70,
+      "matches": 70,
+      "false_success": {
+        "numerator": 0,
+        "denominator": 65
+      },
+      "false_failure": {
+        "numerator": 0,
+        "denominator": 5
+      },
+      "unknown": {
+        "numerator": 25,
+        "denominator": 70
+      },
+      "demonstrated_violation_detection": {
+        "numerator": 40,
+        "denominator": 40
+      },
+      "evidence_condition_coverage": {
+        "numerator": 430,
+        "denominator": 560
+      },
+      "verification_latency_ms": {
+        "median": 13.0820205,
+        "p95": 18.64995,
+        "maximum": 27.543475
+      },
+      "replayed": 70,
+      "audit_head": "ef1a55b12fe98b67305104e409d94b9ae92c3f45042927ea2e0e8e6a0916bd26",
+      "external_calls": 0,
+      "cost": "Local CPU/storage; monetary cost not measured",
+      "historical_invariant_detection": "not implemented; not measured",
+      "replay_fault_assumption": "The five injected-fault cases require the same injected RuntimeError for exact replay"
+    },
+    "rows": [
+      {
+        "scenario": "correct",
+        "repeat": 0,
+        "expected": "SUCCESS",
+        "actual": "SUCCESS",
+        "latency_ms": 8.836622,
+        "verdict_id": "f2777c77639d8681bf29f9eef2583d88983b3a7dd21070c8b80cfa3c98405a08",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "correct",
+        "repeat": 1,
+        "expected": "SUCCESS",
+        "actual": "SUCCESS",
+        "latency_ms": 6.16486,
+        "verdict_id": "73b2529e93f1c0e470e615ed8fec640847aa1408658f45cf7809c94502711b2f",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "correct",
+        "repeat": 2,
+        "expected": "SUCCESS",
+        "actual": "SUCCESS",
+        "latency_ms": 5.970557,
+        "verdict_id": "96c7e8cd4c785efd8b5e4ac672c36cd727b819fbd10298fdaef9077f17300b3f",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "correct",
+        "repeat": 3,
+        "expected": "SUCCESS",
+        "actual": "SUCCESS",
+        "latency_ms": 8.605908,
+        "verdict_id": "7fb6968706d1315109005f99b90bd0436f912d65d2c935afbafcfadd3616897a",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "correct",
+        "repeat": 4,
+        "expected": "SUCCESS",
+        "actual": "SUCCESS",
+        "latency_ms": 7.920255,
+        "verdict_id": "f15de190ddd1ee1ab935c51461cbbc9f6498d0c8bce345dc51099b99240b87c0",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "false_success",
+        "repeat": 0,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 10.437584,
+        "verdict_id": "fddf358e5ed263792b9e098d0783cdcb06cc0ca9aa09ce36ef68bd17d49abab9",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "false_success",
+        "repeat": 1,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 8.82385,
+        "verdict_id": "297fe275d32da371b045225ed3cc292d043c0092b25fc2c5ea12e83e41bf7204",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "false_success",
+        "repeat": 2,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 15.742272,
+        "verdict_id": "3fc1a7c470bc2e99c1878b1fd4a5d379d0e3e208bdf3eacdeac54024544cb9f6",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "false_success",
+        "repeat": 3,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 9.357614,
+        "verdict_id": "48c1d654e1e40d74cce65f2c2a8dc468016503f78b887ccd7c0c11c2802769b1",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "false_success",
+        "repeat": 4,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 9.321457,
+        "verdict_id": "994967c2e3d346d43b44f351352ce33ff761a8f5dd6c7c1d56a7791d9860591e",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "partial",
+        "repeat": 0,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 7.684267,
+        "verdict_id": "efa01520668363baa666f34bbadcd617115853181989deac38dcbab52588a8cd",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "partial",
+        "repeat": 1,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 7.23426,
+        "verdict_id": "cd4b1df33ef974fba04e5e8076cc9e72f6827d0400bdffa0f636b063a6663e92",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "partial",
+        "repeat": 2,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 7.431668,
+        "verdict_id": "dd6e868543966f9555997d7b3263020fcf99cf8c1321df961e5888058aecd1ab",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "partial",
+        "repeat": 3,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 13.078685,
+        "verdict_id": "da995f5af230233b38019d4bdc03ef947db0a9567652932980f73b98c63a3ffd",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "partial",
+        "repeat": 4,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 9.449152,
+        "verdict_id": "5d7b23770840145b34aedd829bac1fa0ddab7bf5e0d66b4eb9e0b2fa267b9e09",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "duplicate",
+        "repeat": 0,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 11.011504,
+        "verdict_id": "bc643e6c4b047a35f673b746952c72ccaaed458c7a31a940db3f1b9aebc657f5",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "duplicate",
+        "repeat": 1,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 9.251637,
+        "verdict_id": "6e10ce422db37cf62d080f4a7e55cce74ff82e06941f2ec3f9598a1a5220fdbe",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "duplicate",
+        "repeat": 2,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 10.106829,
+        "verdict_id": "75ad3f439378ba27ed2951628c38136d6d716782eb6cf0deafe37314f1b0db85",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "duplicate",
+        "repeat": 3,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 8.88263,
+        "verdict_id": "404ae040ab008a257b1c21665969333e7e232c9503bb484443f0cbdcb3632e67",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "duplicate",
+        "repeat": 4,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 9.531567,
+        "verdict_id": "4c21bca2d6962373e507fea8e877c6c6f557ccea8cb4733d020a9fd1f7cbb85c",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "source_missing",
+        "repeat": 0,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 9.222859,
+        "verdict_id": "f1ae7682ff74cd351a26987f326486ff4d86ed09cf176fa1035fa2e5c0389257",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "source_missing",
+        "repeat": 1,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 9.734225,
+        "verdict_id": "3d3cb657a25c55a14bb3f1b903a00289a73e64a24d5e8a780501cf6521ed902c",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "source_missing",
+        "repeat": 2,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 9.733434,
+        "verdict_id": "bec3da14dd698a84e23e5880c6137f61579b03a1ac0e5a9a767b07441a238f87",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "source_missing",
+        "repeat": 3,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 9.590402,
+        "verdict_id": "0566574e2f62f3cc253211c17d30382585a0bb54193af5b541c9fee2795c6aaf",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "source_missing",
+        "repeat": 4,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 10.043255,
+        "verdict_id": "e6d68de214abeafe009a7ca3c1e23a6f31ca1d4fe04886532180e622b0618791",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "wrong_match",
+        "repeat": 0,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 11.645855,
+        "verdict_id": "5f656207c8859470c3020254d499294ac69eb21a46ad2bff490ef65d2d695f82",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "wrong_match",
+        "repeat": 1,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 12.305533,
+        "verdict_id": "012afde80890c43280ceec2b05887bb5bf5162586d79824a836e76e2fa1e1a88",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "wrong_match",
+        "repeat": 2,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 11.415416,
+        "verdict_id": "ecf95e42f3d1aa56c9fdcbd5495294367cce24db727f36ae9bac133d9fcc83a5",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "wrong_match",
+        "repeat": 3,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 11.894187,
+        "verdict_id": "ad86b3f9420d1b9c1444b356ddc3bbb3c7912dae3ca3da051a5f32121a1959a5",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "wrong_match",
+        "repeat": 4,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 11.197218,
+        "verdict_id": "47310f91de49bfb1cbfe0cccd9d910e88dfa59574aca124fd618eecf2eecd0fa",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "wrong_destination",
+        "repeat": 0,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 11.250941,
+        "verdict_id": "a77daf87241d6642a4ed130039b5920b99b173a64bd70b4aa131115ce3bbdab6",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "wrong_destination",
+        "repeat": 1,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 14.291099,
+        "verdict_id": "3a8eb7c725dd453b40af6a66cf6568d1682972974a1d614806281e2767514ddc",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "wrong_destination",
+        "repeat": 2,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 12.994034,
+        "verdict_id": "f4dea1a8cf48c67bd6e3fd5d113aad2f437944a713a2fb5a1f88b3df09df7a29",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "wrong_destination",
+        "repeat": 3,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 13.785024,
+        "verdict_id": "9c29e2fdbd5e8c5601c3b823b9778c1ece6117bbd0021b046af74e5819916ff7",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "wrong_destination",
+        "repeat": 4,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 11.049444,
+        "verdict_id": "c66d691a13a842cc676967f402c360ef034ae7c317159881e3f4e2a66ae4d5ba",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "wrong_currency",
+        "repeat": 0,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 13.154815,
+        "verdict_id": "923d13b0209e2bef44b88620336fdf3dbe8cfe95b4fbdaf338b6832363a006c5",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "wrong_currency",
+        "repeat": 1,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 12.113375,
+        "verdict_id": "3cc48995ea882d91d03d844af051aae0159faf5d5efcf081068b93193d730525",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "wrong_currency",
+        "repeat": 2,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 11.703068,
+        "verdict_id": "cb032f76eae8baac259f6141c7fc9eb621ca1b38f1ed02cf0ad0bf9b91e733c6",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "wrong_currency",
+        "repeat": 3,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 15.180624,
+        "verdict_id": "65d410454b191364db731c331df88c2d4facd3e5841d67e8605efc3d456e16b3",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "wrong_currency",
+        "repeat": 4,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 13.247607,
+        "verdict_id": "ff244edf4d1f29204665c084f46509787c2f0ec7296b1e4c0d40335b1be04639",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "unauthorized",
+        "repeat": 0,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 14.776426,
+        "verdict_id": "3014bfe3a076d90f0da754046e0f1631a8cd907d27344039cad5df7eda14ee6e",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "unauthorized",
+        "repeat": 1,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 12.085472,
+        "verdict_id": "7deda1ba5be5c15a73940a35c451b6ba8087e96e876512a22716637f3581573c",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "unauthorized",
+        "repeat": 2,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 15.118701,
+        "verdict_id": "237b493ae0ffa80ee1f8b7f67033f0e3db443eb94b041383c0bba363c3346a79",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "unauthorized",
+        "repeat": 3,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 27.543475,
+        "verdict_id": "ba980985d4a6f67164c9ac2e9af871461df0cb6187e732cb9a5a910c4ec08bdd",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "unauthorized",
+        "repeat": 4,
+        "expected": "FAILURE",
+        "actual": "FAILURE",
+        "latency_ms": 15.975354,
+        "verdict_id": "b66bd98996c69595bf4106bd32377e6f048b30e9af07e3aa20b2eee435cac5b7",
+        "conditions_observed": 8,
+        "condition_count": 8
+      },
+      {
+        "scenario": "missing",
+        "repeat": 0,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 13.228616,
+        "verdict_id": "18bd348e750dd2ae07430ff9dcffa6bc15ca7c3a7f59aad0e47d78d0b8a496d1",
+        "conditions_observed": 0,
+        "condition_count": 8
+      },
+      {
+        "scenario": "missing",
+        "repeat": 1,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 13.085356,
+        "verdict_id": "0f688997233297bfb66e7b70833feeb7938906119d8710f66379d4edb4b49dbb",
+        "conditions_observed": 0,
+        "condition_count": 8
+      },
+      {
+        "scenario": "missing",
+        "repeat": 2,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 13.923014,
+        "verdict_id": "1bbd81d837c3167ccd1f3562bfa891ecf44414907a60e50e21682595c6135ee4",
+        "conditions_observed": 0,
+        "condition_count": 8
+      },
+      {
+        "scenario": "missing",
+        "repeat": 3,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 13.615141,
+        "verdict_id": "0a855c41f3aff7b4e13183c01bcaf264be31d4fc48275c30a3822c6ab9a32179",
+        "conditions_observed": 0,
+        "condition_count": 8
+      },
+      {
+        "scenario": "missing",
+        "repeat": 4,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 15.933901,
+        "verdict_id": "af074c531dee363f249c4407f59c0bbd67e6f3da6b90f59350cd7904abf49edf",
+        "conditions_observed": 0,
+        "condition_count": 8
+      },
+      {
+        "scenario": "stale",
+        "repeat": 0,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 14.760995,
+        "verdict_id": "89571eda98758f74bdeb90e066870d1f3a04a45a3a3fd7b5432268e8ec9ca53a",
+        "conditions_observed": 0,
+        "condition_count": 8
+      },
+      {
+        "scenario": "stale",
+        "repeat": 1,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 17.550129,
+        "verdict_id": "bd5b4c2a7e27bb41726e1e5d27e38ef5dd241da421a670c306c2ce1de481e56e",
+        "conditions_observed": 0,
+        "condition_count": 8
+      },
+      {
+        "scenario": "stale",
+        "repeat": 2,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 17.960512,
+        "verdict_id": "0cecc44af016f980d319c179cd0c00330a3886947270228ca2f3a34e2d41fc5d",
+        "conditions_observed": 0,
+        "condition_count": 8
+      },
+      {
+        "scenario": "stale",
+        "repeat": 3,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 17.696562,
+        "verdict_id": "292fbefacfc2271ff220662addc3e5b07b85434a834221454b49365a5526b106",
+        "conditions_observed": 0,
+        "condition_count": 8
+      },
+      {
+        "scenario": "stale",
+        "repeat": 4,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 24.468164,
+        "verdict_id": "a87686f497e55beb78117ab18ce27762b4954430de5c936d034238e6d9c8695f",
+        "conditions_observed": 0,
+        "condition_count": 8
+      },
+      {
+        "scenario": "conflict",
+        "repeat": 0,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 20.661552,
+        "verdict_id": "a116b98db365327bb0103270554bfdd4a3bbd6735eb08083bef05bc48e6aef29",
+        "conditions_observed": 7,
+        "condition_count": 8
+      },
+      {
+        "scenario": "conflict",
+        "repeat": 1,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 17.361848,
+        "verdict_id": "91ba53d9f0d3de3687a08dad657a576217d89ed2bc81c95d6a6a1476c50b67f0",
+        "conditions_observed": 7,
+        "condition_count": 8
+      },
+      {
+        "scenario": "conflict",
+        "repeat": 2,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 15.171691,
+        "verdict_id": "d48e63b13184e7691fd75e930f3b2008b93e3f7007feb972cc0c77e4c18e50ea",
+        "conditions_observed": 7,
+        "condition_count": 8
+      },
+      {
+        "scenario": "conflict",
+        "repeat": 3,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 14.972364,
+        "verdict_id": "ca7bdc8b41b542bdfa1c55742ca1c8d73bc67e4bb25951f60c9eece6709c13ac",
+        "conditions_observed": 7,
+        "condition_count": 8
+      },
+      {
+        "scenario": "conflict",
+        "repeat": 4,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 14.195216,
+        "verdict_id": "d40917402df0a0faca095ff7d93ec248a8fc81256f929269ae0514ecf46c2194",
+        "conditions_observed": 7,
+        "condition_count": 8
+      },
+      {
+        "scenario": "fabricated",
+        "repeat": 0,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 15.447233,
+        "verdict_id": "3c2cddfdcc9b7b5bed618ab0da39d6af3b33373988b324369aa74caf099280da",
+        "conditions_observed": 7,
+        "condition_count": 8
+      },
+      {
+        "scenario": "fabricated",
+        "repeat": 1,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 15.701616,
+        "verdict_id": "55df95710848e3f55b0b16c0db62c988b962956bbe55abdd398294db91a81d60",
+        "conditions_observed": 7,
+        "condition_count": 8
+      },
+      {
+        "scenario": "fabricated",
+        "repeat": 2,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 15.005771,
+        "verdict_id": "9538614328ee5d0480b8a651d611c4c5048006be32b958f0a30ff8ab1b080161",
+        "conditions_observed": 7,
+        "condition_count": 8
+      },
+      {
+        "scenario": "fabricated",
+        "repeat": 3,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 16.352323,
+        "verdict_id": "4c5f130110e386fa283176621b2a6a1d5fc87426f84cd5784531790bd5b206a9",
+        "conditions_observed": 7,
+        "condition_count": 8
+      },
+      {
+        "scenario": "fabricated",
+        "repeat": 4,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 14.54389,
+        "verdict_id": "b533b8f30a09efafb1350ec3b4c08a80e8250f7c6a5e41d8c2aa36a9222805eb",
+        "conditions_observed": 7,
+        "condition_count": 8
+      },
+      {
+        "scenario": "fault",
+        "repeat": 0,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 15.290495,
+        "verdict_id": "52045452a748c945c6e2348f1b61e875b6b6e348c6e3e3cbe5ffafc554823980",
+        "conditions_observed": 0,
+        "condition_count": 8
+      },
+      {
+        "scenario": "fault",
+        "repeat": 1,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 18.211975,
+        "verdict_id": "fc0c5172dbca028bc6fd996f14b3b704a36e7c1348e6cab872eb2d0730abc939",
+        "conditions_observed": 0,
+        "condition_count": 8
+      },
+      {
+        "scenario": "fault",
+        "repeat": 2,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 17.071557,
+        "verdict_id": "d1510df8b06d3c586ae05bea7c82a8142ee75590fc3b07f30fdac491a46a39f8",
+        "conditions_observed": 0,
+        "condition_count": 8
+      },
+      {
+        "scenario": "fault",
+        "repeat": 3,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 18.64995,
+        "verdict_id": "8bb2b7e7ad9c8fdf33f17086b3f61dfd3231889904ccf2dddf288c509ac8a95d",
+        "conditions_observed": 0,
+        "condition_count": 8
+      },
+      {
+        "scenario": "fault",
+        "repeat": 4,
+        "expected": "UNKNOWN",
+        "actual": "UNKNOWN",
+        "latency_ms": 20.945997,
+        "verdict_id": "f7c497d3f21199a3f8bce6bf65cddb48a1743ce3dc638f470d3cb2116765cd8b",
+        "conditions_observed": 0,
+        "condition_count": 8
+      }
+    ]
+  },
+  "source_sha256": {
+    "vcp/__init__.py": "9f24c03d7c117a864ed40b6a528e96818157202056d542b80da3910d62d69fe1",
+    "vcp/engine.py": "cd29460082159a0e55ddb025f5ae245160a26b2e0bf5909e361ab11603613016",
+    "vcp/evidence.py": "e4b2e87ce13b91ae9d1cdc79d14e3231cf0d39eed054cc3c2e7e691b5a2d8195",
+    "vcp/integrations/__init__.py": "b9d2b1b35c8a5253b8042b553681795c1562928972cc7c54f79643f37a8c512e",
+    "vcp/integrations/legacy.py": "e750121c078cd24736bf16ecfa02d6776c41d5fda33fb7e6cb7283c8a289bd69",
+    "vcp/integrations/legacy_loop_models.py": "1d33d16bf2c03cc25783eb29e6033c5c2cdfb76d009852d4d3a150f1aaf4c41d",
+    "vcp/logic.py": "066fc8d5e838aa888fb54d2a9a2b5a8327d79c5c5dd81a09de3b1cf783ae733c",
+    "vcp/models.py": "94ad4b750074cbc0eb129c77867dcaaa9c952eb37a2a51153d61fb7a2808ce9f",
+    "vcp/reconciliation.py": "1f628530e83e930f8a5477f67afb7189b2d1bbb5f10908ef46a4fc69b929fc3a",
+    "vcp/security.py": "7c49c80a827fc9e35d86e0c09abbae0ca047030429f2dcaa1a5bf9374cd79543",
+    "vcp/storage.py": "89178dcedfec7eac7492072a1238c721b8f7eb3128d9a2ad5f618819e085b2f2"
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Evidence Envelope",
+  "type": "object",
+  "required": [
+    "evidence_id",
+    "run_id",
+    "contract_id",
+    "contract_version",
+    "layer_id",
+    "attempt",
+    "artifact_digest",
+    "checks",
+    "producer",
+    "timestamp"
+  ],
+  "properties": {
+    "evidence_id": {
+      "type": "string"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "contract_id": {
+      "type": "string"
+    },
+    "contract_version": {
+      "type": "integer"
+    },
+    "layer_id": {
+      "type": "string"
+    },
+    "attempt": {
+      "type": "integer"
+    },
+    "artifact_digest": {
+      "type": "string"
+    },
+    "checks": {
+      "type": "array"
+    },
+    "producer": {
+      "type": "object"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
