@@ -86,7 +86,7 @@ history. Evidence paths:
 - `evidence/completion/fixtures/` and `snapshots/`: authoritative synthetic state and content-addressed artifacts.
 - `evidence/completion/fault_plan.json`: explicit trusted fixture fault assumptions for replay.
 - `evidence/baseline/FINAL_EVIDENCE_REPORT_v0.1.0.md`: retained original report; original evidence databases remain unchanged.
-- `FILE_MANIFEST.json`: SHA-256 manifest of the current Phase 1 files except itself and git internals.
+- `FILE_MANIFEST.json`: SHA-256 manifest of the current Phase 1 files except itself, SQLite coordination sidecars and git internals.
 
 Current completion audit head: `20396228c703e523234b0f889d961effb72bd9e06e69ffd69e88702f62ea1499`.
 
