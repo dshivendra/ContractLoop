@@ -31,24 +31,29 @@ class Ledger:
     def append(self, kind, identity, payload):
         if self.read_only:
             raise PermissionError("read-only ledger")
-        encoded = canonical(payload)
         self.db.execute("BEGIN IMMEDIATE")
         try:
-            old = self.db.execute("SELECT payload,hash FROM ledger WHERE kind=? AND identity=?", (kind,identity)).fetchone()
-            if old:
-                if old[0] != encoded:
-                    raise ValueError("immutable identity collision")
-                self.db.execute("COMMIT")
-                return old[1]
-            last = self.db.execute("SELECT seq,hash FROM ledger ORDER BY seq DESC LIMIT 1").fetchone()
-            seq, previous = (last[0]+1,last[1]) if last else (1,"0"*64)
-            hashed = digest(dict(seq=seq,kind=kind,identity=identity,payload=json.loads(encoded),previous_hash=previous))
-            self.db.execute("INSERT INTO ledger VALUES (?,?,?,?,?,?)", (seq,kind,identity,encoded,previous,hashed))
+            hashed = self.append_in_transaction(kind,identity,payload)
             self.db.execute("COMMIT")
             return hashed
         except BaseException:
             self.db.execute("ROLLBACK")
             raise
+
+    def append_in_transaction(self,kind,identity,payload):
+        """Append using an already-open effects transaction; no independent commit."""
+        if self.read_only:raise PermissionError("read-only ledger")
+        if not self.db.in_transaction:raise RuntimeError("active transaction required")
+        encoded=canonical(payload)
+        old=self.db.execute("SELECT payload,hash FROM ledger WHERE kind=? AND identity=?",(kind,identity)).fetchone()
+        if old:
+            if old[0]!=encoded:raise ValueError("immutable identity collision")
+            return old[1]
+        last=self.db.execute("SELECT seq,hash FROM ledger ORDER BY seq DESC LIMIT 1").fetchone()
+        seq,previous=(last[0]+1,last[1]) if last else (1,"0"*64)
+        hashed=digest(dict(seq=seq,kind=kind,identity=identity,payload=json.loads(encoded),previous_hash=previous))
+        self.db.execute("INSERT INTO ledger VALUES (?,?,?,?,?,?)",(seq,kind,identity,encoded,previous,hashed))
+        return hashed
 
     def records(self):
         return [dict(seq=r[0],kind=r[1],identity=r[2],payload=json.loads(r[3]),previous_hash=r[4],hash=r[5])

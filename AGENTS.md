@@ -1,8 +1,10 @@
 # ContractLoop contributor and Codex instructions
 
 The implemented kernel is in `verification-control-plane/`. Read HANDOFF.md and
-FORMAL_SEMANTICS.md before changing behavior. Scope stays in Phase 1 unless the
-owner explicitly authorizes another phase. Review priorities are in REVIEW.md.
+FORMAL_SEMANTICS.md before changing behavior. Phase 1 was merged in PR #1. The owner subsequently authorized completing
+ContractLoop. The supported extension is the local synthetic controlled-loop MVP
+described in `verification-control-plane/LOOP_MVP_REPORT.md`. Production adapters,
+cloud deployment, optional ontology and shipping automation remain outside scope. Review priorities are in REVIEW.md.
 
 Run the deterministic gate from that directory:
 

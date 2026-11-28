@@ -1,0 +1,1 @@
+{"bank":[["T1",10000,"INR"],["T2",2500,"INR"]],"destination":[["T1",10000,"USD","CMS-A","matched"],["T2",2500,"INR","CMS-B","matched"],["T3",700,"INR","CMS-C","unmatched"]],"manifest":[[3]],"meta":[["state/1","fixture-batch/1",1]],"source":[["T1",10000,"INR","CMS-A"],["T2",2500,"INR","CMS-B"],["T3",700,"INR","CMS-C"]]}

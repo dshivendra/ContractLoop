@@ -1,5 +1,18 @@
 # System invariant traceability
 
+## Current controlled-loop extension
+
+Package 0.2.0 extends these kernel invariants with runtime guards:
+immutable approved execution scope; tenant/role/actor/action/resource authorization;
+CAS and full-request idempotency; atomic effects/receipts/counters/audit; bounded
+actions/attempts/recovery/evidence/time; monotone historical violation; input/resource
+mutation rollback; independent parent predicates; and separate verdict/certificate
+validity. Tests in test_runtime.py, test_runtime_guards.py, test_composition.py and
+test_api.py exercise these properties, with eight additional runtime mutations.
+Boundary checks do not prove an always invariant between observations.
+
+## Verification kernel reference
+
 Implemented means demonstrated inside the declared local synthetic TCB. Partial
 means the named slice is tested, not that the complete architectural requirement passes.
 

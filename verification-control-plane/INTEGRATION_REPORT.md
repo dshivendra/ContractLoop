@@ -1,5 +1,15 @@
 # Available components and integration decisions
 
+## Current controlled-loop extension
+
+The existing legacy adapters below still import executor output only as untrusted
+claims. Package 0.2.0 adds direct local synthetic execution with no dependency on a
+legacy passed flag, external agent runtime, Claude login, ontology service or paid
+API. Optional integrations and autonomous shipping remain paused. The completed
+local execution integration and its boundaries are in LOOP_MVP_REPORT.md.
+
+## Verification kernel reference
+
 Checked the current workspace and ancestor AGENTS.md locations. No project,
 repository, tests, or applicable AGENTS.md was present. A local minimal Python
 project was initialized. Baseline commit:

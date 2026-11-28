@@ -1,5 +1,17 @@
 # Architecture
 
+## Current controlled-loop extension
+
+The kernel below retains its Phase 1 evidence semantics. Package 0.2.0 now adds
+`planning.py`, `runtime_models.py`, `runtime.py`, `composition.py`, `audit.py`,
+`loop_cli.py` and `api.py` around it. Runtime effects and their receipts/audit share
+one SQLite transaction; observation remains an independent read. The execution
+approval hashes the complete execution contract, including the pinned kernel and
+composition plan. Attestation issuance locks and checks the current snapshot;
+monitoring samples it later. See LOOP_MVP_REPORT.md for current supported scope.
+
+## Verification kernel reference
+
 Frozen handoff semantics remain unchanged. This implementation selects the bounded
 Phase 1 slice: approved contract → authenticated point observations → independent
 verification → durable result. `HANDOFF.md` retains the complete frozen architecture.

@@ -1,5 +1,19 @@
 # Trust model
 
+## Current controlled-loop extension
+
+Current runtime adds authenticated local API token→Principal mappings and
+preventive transaction-boundary action authorization. Executor, verifier and owner
+roles are logically separate, with reserved authority names excluded from approved
+executors. Fixture HMAC keys remain public; process/database administrators remain
+trusted. Effects, audit and receipts share one SQLite transaction, while the
+collector independently reads committed state. Certificates are signed and checked
+for scope, freshness, expiry and drift. This does not establish OS-level isolation,
+production identity/key custody or distributed exactly-once effects. See the full
+current limitations in LOOP_MVP_REPORT.md.
+
+## Verification kernel reference
+
 TCB: CPython/Pydantic, local kernel and collector code, fixture setup and source
 manifest/baseline, SQLite engine/file permissions, verifier host, HMAC policy/key
 holders, harness-provided clock/resource/state version, independent test oracle.

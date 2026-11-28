@@ -25,3 +25,19 @@ its fix and has a regression plus targeted mutation. No approval requirement or
 success condition was weakened. Read-only replay and standard-library trace
 coverage improve reproducibility without new dependencies. Historical records
 retain their original engine version.
+
+
+## ADR: Owner-authorized local controlled-loop MVP after Phase 1 merge
+
+The owner requested completion of ContractLoop after the kernel gate passed and
+PR #1 merged. Extend the product with a local synthetic execution loop, while
+preserving the verifier's point semantics and all historical evidence. Use one
+SQLite transaction boundary for controlled effects, receipts and audit, rather than
+claiming exactly-once external actions. Keep executor claims untrusted. Approve
+whole execution contracts and dependency plans; never let generated drafts approve
+themselves. Attest only an independently verified, fresh current snapshot. Preserve
+historical verdicts while separately expiring/revoking certificates. Limit
+composition to one tenant/resource store, and mark production identity, arbitrary
+temporal predicates and external compensation as unsupported. Leave shipping and
+ontology integrations paused. Source, regression, mutation and replay evidence
+must accompany these scope additions; no automatic merge is introduced.
