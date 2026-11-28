@@ -1,0 +1,523 @@
+{
+  "runtime_version": "controlled-loop/0.2.0",
+  "status": "PASS",
+  "cases": 21,
+  "matches": 21,
+  "mutations_detected": 8,
+  "mutation_count": 8,
+  "rows": [
+    {
+      "scenario": "happy",
+      "repeat": 0,
+      "expected": "SUCCESS",
+      "actual": "SUCCESS",
+      "lifecycle": "completed",
+      "actions": 1,
+      "recoveries": 0,
+      "collections": 1,
+      "historical_violation": false,
+      "attestation": "VALID",
+      "audit": {
+        "head": "e313bd0e37f53db580416e23265dc5a34146401e48c3f7035ca25474bb052e2b",
+        "tasks": 1,
+        "events": 13,
+        "committed_actions": 1,
+        "replayed_verdicts": 1,
+        "runtime_consistent": true
+      }
+    },
+    {
+      "scenario": "happy",
+      "repeat": 1,
+      "expected": "SUCCESS",
+      "actual": "SUCCESS",
+      "lifecycle": "completed",
+      "actions": 1,
+      "recoveries": 0,
+      "collections": 1,
+      "historical_violation": false,
+      "attestation": "VALID",
+      "audit": {
+        "head": "6836934a6a9606d93738a670f8896e1bd82dbce845085bb3acc34417d0c78f71",
+        "tasks": 1,
+        "events": 13,
+        "committed_actions": 1,
+        "replayed_verdicts": 1,
+        "runtime_consistent": true
+      }
+    },
+    {
+      "scenario": "happy",
+      "repeat": 2,
+      "expected": "SUCCESS",
+      "actual": "SUCCESS",
+      "lifecycle": "completed",
+      "actions": 1,
+      "recoveries": 0,
+      "collections": 1,
+      "historical_violation": false,
+      "attestation": "VALID",
+      "audit": {
+        "head": "792e02d7527994c1bed059adf92a0c7816c1c8fced80c8e7c710554ac0a4eda0",
+        "tasks": 1,
+        "events": 13,
+        "committed_actions": 1,
+        "replayed_verdicts": 1,
+        "runtime_consistent": true
+      }
+    },
+    {
+      "scenario": "false_claim",
+      "repeat": 0,
+      "expected": "FAILURE",
+      "actual": "FAILURE",
+      "lifecycle": "completed",
+      "actions": 2,
+      "recoveries": 1,
+      "collections": 2,
+      "historical_violation": false,
+      "attestation": "not-issued",
+      "audit": {
+        "head": "a2e045cb0e87fc41028198af7e7e179e247d0071b95eb7b83c0355b31bb0c110",
+        "tasks": 1,
+        "events": 19,
+        "committed_actions": 2,
+        "replayed_verdicts": 1,
+        "runtime_consistent": true
+      }
+    },
+    {
+      "scenario": "false_claim",
+      "repeat": 1,
+      "expected": "FAILURE",
+      "actual": "FAILURE",
+      "lifecycle": "completed",
+      "actions": 2,
+      "recoveries": 1,
+      "collections": 2,
+      "historical_violation": false,
+      "attestation": "not-issued",
+      "audit": {
+        "head": "103c18f181a0584f35985a8290575304b353e9979f22abfe559dc8c5fa84cb7b",
+        "tasks": 1,
+        "events": 19,
+        "committed_actions": 2,
+        "replayed_verdicts": 1,
+        "runtime_consistent": true
+      }
+    },
+    {
+      "scenario": "false_claim",
+      "repeat": 2,
+      "expected": "FAILURE",
+      "actual": "FAILURE",
+      "lifecycle": "completed",
+      "actions": 2,
+      "recoveries": 1,
+      "collections": 2,
+      "historical_violation": false,
+      "attestation": "not-issued",
+      "audit": {
+        "head": "3f48ff23db0d6d46ba403cd7ab7912fc8619c9378d855e4822edb5069e0ffb09",
+        "tasks": 1,
+        "events": 19,
+        "committed_actions": 2,
+        "replayed_verdicts": 1,
+        "runtime_consistent": true
+      }
+    },
+    {
+      "scenario": "transient",
+      "repeat": 0,
+      "expected": "SUCCESS",
+      "actual": "SUCCESS",
+      "lifecycle": "completed",
+      "actions": 2,
+      "recoveries": 1,
+      "collections": 1,
+      "historical_violation": false,
+      "attestation": "VALID",
+      "audit": {
+        "head": "9c9fc5bdfbb6e54d131927ccfe0bfd2584986ee42efc43cdaf3a92d19d7f21e0",
+        "tasks": 1,
+        "events": 16,
+        "committed_actions": 2,
+        "replayed_verdicts": 1,
+        "runtime_consistent": true
+      }
+    },
+    {
+      "scenario": "transient",
+      "repeat": 1,
+      "expected": "SUCCESS",
+      "actual": "SUCCESS",
+      "lifecycle": "completed",
+      "actions": 2,
+      "recoveries": 1,
+      "collections": 1,
+      "historical_violation": false,
+      "attestation": "VALID",
+      "audit": {
+        "head": "34f64732b3d1f3f49bc071bebdaadcd8027a565171359ae1d387b78f5e949c08",
+        "tasks": 1,
+        "events": 16,
+        "committed_actions": 2,
+        "replayed_verdicts": 1,
+        "runtime_consistent": true
+      }
+    },
+    {
+      "scenario": "transient",
+      "repeat": 2,
+      "expected": "SUCCESS",
+      "actual": "SUCCESS",
+      "lifecycle": "completed",
+      "actions": 2,
+      "recoveries": 1,
+      "collections": 1,
+      "historical_violation": false,
+      "attestation": "VALID",
+      "audit": {
+        "head": "3a28cc91bb74946e5be0818e6e7e5afc6d65258bd1fe6be8a639fbe77f8b6b34",
+        "tasks": 1,
+        "events": 16,
+        "committed_actions": 2,
+        "replayed_verdicts": 1,
+        "runtime_consistent": true
+      }
+    },
+    {
+      "scenario": "violation",
+      "repeat": 0,
+      "expected": "FAILURE",
+      "actual": "FAILURE",
+      "lifecycle": "blocked",
+      "actions": 1,
+      "recoveries": 0,
+      "collections": 0,
+      "historical_violation": true,
+      "attestation": "not-issued",
+      "audit": {
+        "head": "528bee284d2009f4d00c48436eee0d3739abad5add94300e81fe97c216fa9690",
+        "tasks": 1,
+        "events": 8,
+        "committed_actions": 1,
+        "replayed_verdicts": 0,
+        "runtime_consistent": true
+      }
+    },
+    {
+      "scenario": "violation",
+      "repeat": 1,
+      "expected": "FAILURE",
+      "actual": "FAILURE",
+      "lifecycle": "blocked",
+      "actions": 1,
+      "recoveries": 0,
+      "collections": 0,
+      "historical_violation": true,
+      "attestation": "not-issued",
+      "audit": {
+        "head": "0900b9a802282551d149ccde0104475a1323881d24240bd449dc17f56623beef",
+        "tasks": 1,
+        "events": 8,
+        "committed_actions": 1,
+        "replayed_verdicts": 0,
+        "runtime_consistent": true
+      }
+    },
+    {
+      "scenario": "violation",
+      "repeat": 2,
+      "expected": "FAILURE",
+      "actual": "FAILURE",
+      "lifecycle": "blocked",
+      "actions": 1,
+      "recoveries": 0,
+      "collections": 0,
+      "historical_violation": true,
+      "attestation": "not-issued",
+      "audit": {
+        "head": "e0ad9890f46310b6c34639a1ba42e58ccce02c808dd5e453f6d355b7569bbc8f",
+        "tasks": 1,
+        "events": 8,
+        "committed_actions": 1,
+        "replayed_verdicts": 0,
+        "runtime_consistent": true
+      }
+    },
+    {
+      "scenario": "unavailable",
+      "repeat": 0,
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN",
+      "lifecycle": "blocked",
+      "actions": 2,
+      "recoveries": 1,
+      "collections": 0,
+      "historical_violation": false,
+      "attestation": "not-issued",
+      "audit": {
+        "head": "8dca25afae55b634fab00510c3dd7bd63140f38e8898c82571792d94c9fecea1",
+        "tasks": 1,
+        "events": 11,
+        "committed_actions": 2,
+        "replayed_verdicts": 0,
+        "runtime_consistent": true
+      }
+    },
+    {
+      "scenario": "unavailable",
+      "repeat": 1,
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN",
+      "lifecycle": "blocked",
+      "actions": 2,
+      "recoveries": 1,
+      "collections": 0,
+      "historical_violation": false,
+      "attestation": "not-issued",
+      "audit": {
+        "head": "241cfeac27ac12ac94b9aae3121019b2f72999aadffed6223e41f4e711e45028",
+        "tasks": 1,
+        "events": 11,
+        "committed_actions": 2,
+        "replayed_verdicts": 0,
+        "runtime_consistent": true
+      }
+    },
+    {
+      "scenario": "unavailable",
+      "repeat": 2,
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN",
+      "lifecycle": "blocked",
+      "actions": 2,
+      "recoveries": 1,
+      "collections": 0,
+      "historical_violation": false,
+      "attestation": "not-issued",
+      "audit": {
+        "head": "b9f2dd9e1866e30e732e583ec90cbd01b74be862fc0e1803ae8518979ebc5239",
+        "tasks": 1,
+        "events": 11,
+        "committed_actions": 2,
+        "replayed_verdicts": 0,
+        "runtime_consistent": true
+      }
+    },
+    {
+      "scenario": "cancelled",
+      "repeat": 0,
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN",
+      "lifecycle": "cancelled",
+      "actions": 0,
+      "recoveries": 0,
+      "collections": 0,
+      "historical_violation": false,
+      "attestation": "not-issued",
+      "audit": {
+        "head": "68a5cf579a6f7d075ef17857618bef743ee4a5fcf1508112c0b409fe12d1d40c",
+        "tasks": 1,
+        "events": 2,
+        "committed_actions": 0,
+        "replayed_verdicts": 0,
+        "runtime_consistent": true
+      }
+    },
+    {
+      "scenario": "cancelled",
+      "repeat": 1,
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN",
+      "lifecycle": "cancelled",
+      "actions": 0,
+      "recoveries": 0,
+      "collections": 0,
+      "historical_violation": false,
+      "attestation": "not-issued",
+      "audit": {
+        "head": "fbdb75bcecb6f5d8951535ff0a9489c4787e467d90cc6ceabef89b9c19b249ba",
+        "tasks": 1,
+        "events": 2,
+        "committed_actions": 0,
+        "replayed_verdicts": 0,
+        "runtime_consistent": true
+      }
+    },
+    {
+      "scenario": "cancelled",
+      "repeat": 2,
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN",
+      "lifecycle": "cancelled",
+      "actions": 0,
+      "recoveries": 0,
+      "collections": 0,
+      "historical_violation": false,
+      "attestation": "not-issued",
+      "audit": {
+        "head": "015c68f00dc6ae365c10cbadedcb0c26ce60c7bcd832ef7cabbd99ca30782ab8",
+        "tasks": 1,
+        "events": 2,
+        "committed_actions": 0,
+        "replayed_verdicts": 0,
+        "runtime_consistent": true
+      }
+    },
+    {
+      "scenario": "deadline",
+      "repeat": 0,
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN",
+      "lifecycle": "timed_out",
+      "actions": 0,
+      "recoveries": 0,
+      "collections": 0,
+      "historical_violation": false,
+      "attestation": "not-issued",
+      "audit": {
+        "head": "caec7d97f93558d0ecfff46dbb18f699c23bb8237fe7b4e3cf5865b81fa57091",
+        "tasks": 1,
+        "events": 2,
+        "committed_actions": 0,
+        "replayed_verdicts": 0,
+        "runtime_consistent": true
+      }
+    },
+    {
+      "scenario": "deadline",
+      "repeat": 1,
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN",
+      "lifecycle": "timed_out",
+      "actions": 0,
+      "recoveries": 0,
+      "collections": 0,
+      "historical_violation": false,
+      "attestation": "not-issued",
+      "audit": {
+        "head": "3d14f238f17b153e0607b854d20947537fe3bc3a82791202e076bf852ecee8d0",
+        "tasks": 1,
+        "events": 2,
+        "committed_actions": 0,
+        "replayed_verdicts": 0,
+        "runtime_consistent": true
+      }
+    },
+    {
+      "scenario": "deadline",
+      "repeat": 2,
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN",
+      "lifecycle": "timed_out",
+      "actions": 0,
+      "recoveries": 0,
+      "collections": 0,
+      "historical_violation": false,
+      "attestation": "not-issued",
+      "audit": {
+        "head": "97094ef767b8443c4913e0df29da4c5e82ca9709f6f7a9ddb9a48623f4836aea",
+        "tasks": 1,
+        "events": 2,
+        "committed_actions": 0,
+        "replayed_verdicts": 0,
+        "runtime_consistent": true
+      }
+    }
+  ],
+  "mutations": [
+    {
+      "name": "role-bypass",
+      "test": "tests.test_runtime.RuntimeTests.test_undefined_and_executor_transitions_are_rejected",
+      "exit_code": 1,
+      "detected": true,
+      "stdout": "",
+      "stderr": "test_undefined_and_executor_transitions_are_rejected (tests.test_runtime.RuntimeTests.test_undefined_and_executor_transitions_are_rejected) ... FAIL\n\n======================================================================\nFAIL: test_undefined_and_executor_transitions_are_rejected (tests.test_runtime.RuntimeTests.test_undefined_and_executor_transitions_are_rejected)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmptg566w1r/tests/test_runtime.py\", line 65, in test_undefined_and_executor_transitions_are_rejected\n    with self.assertRaises(PermissionError):self.loop.transition('task','validation',self.executor)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: PermissionError not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.015s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "name": "cas-bypass",
+      "test": "tests.test_runtime.RuntimeTests.test_cas_detects_external_change_even_without_version_increment",
+      "exit_code": 1,
+      "detected": true,
+      "stdout": "",
+      "stderr": "test_cas_detects_external_change_even_without_version_increment (tests.test_runtime.RuntimeTests.test_cas_detects_external_change_even_without_version_increment) ... FAIL\n\n======================================================================\nFAIL: test_cas_detects_external_change_even_without_version_increment (tests.test_runtime.RuntimeTests.test_cas_detects_external_change_even_without_version_increment)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmp9iqpvqxc/tests/test_runtime.py\", line 90, in test_cas_detects_external_change_even_without_version_increment\n    with self.assertRaisesRegex(ValueError,'concurrent'):self.loop.gateway.execute(action,self.executor)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.020s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "name": "budget-bypass",
+      "test": "tests.test_runtime.RuntimeTests.test_action_and_cost_budgets_bound_recovery",
+      "exit_code": 1,
+      "detected": true,
+      "stdout": "",
+      "stderr": "test_action_and_cost_budgets_bound_recovery (tests.test_runtime.RuntimeTests.test_action_and_cost_budgets_bound_recovery) ... FAIL\n\n======================================================================\nFAIL: test_action_and_cost_budgets_bound_recovery (tests.test_runtime.RuntimeTests.test_action_and_cost_budgets_bound_recovery)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmp2_bzl8k6/tests/test_runtime.py\", line 165, in test_action_and_cost_budgets_bound_recovery\n    self.assertEqual(result.outcome,'UNKNOWN');self.assertEqual(result.task.actions,1)\n                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 2 != 1\n\n----------------------------------------------------------------------\nRan 1 test in 0.043s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "name": "freshness-bypass",
+      "test": "tests.test_runtime_guards.RuntimeGuardTests.test_stale_evidence_cannot_be_renewed_without_reobservation",
+      "exit_code": 1,
+      "detected": true,
+      "stdout": "",
+      "stderr": "test_stale_evidence_cannot_be_renewed_without_reobservation (tests.test_runtime_guards.RuntimeGuardTests.test_stale_evidence_cannot_be_renewed_without_reobservation) ... FAIL\n\n======================================================================\nFAIL: test_stale_evidence_cannot_be_renewed_without_reobservation (tests.test_runtime_guards.RuntimeGuardTests.test_stale_evidence_cannot_be_renewed_without_reobservation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmpa5gc9sds/tests/test_runtime_guards.py\", line 47, in test_stale_evidence_cannot_be_renewed_without_reobservation\n    with self.assertRaises(PermissionError):self.loop.attest('freshness',self.loop.verifier)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: PermissionError not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.054s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "name": "drift-bypass",
+      "test": "tests.test_runtime.RuntimeTests.test_attestation_expires_and_revokes_without_rewriting_verdict",
+      "exit_code": 1,
+      "detected": true,
+      "stdout": "",
+      "stderr": "test_attestation_expires_and_revokes_without_rewriting_verdict (tests.test_runtime.RuntimeTests.test_attestation_expires_and_revokes_without_rewriting_verdict) ... FAIL\n\n======================================================================\nFAIL: test_attestation_expires_and_revokes_without_rewriting_verdict (tests.test_runtime.RuntimeTests.test_attestation_expires_and_revokes_without_rewriting_verdict)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmp0_y91fsn/tests/test_runtime.py\", line 187, in test_attestation_expires_and_revokes_without_rewriting_verdict\n    self.assertEqual(self.loop.attestation_status(att.id,self.owner),'REVOKED')\nAssertionError: 'VALID' != 'REVOKED'\n- VALID\n+ REVOKED\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.049s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "name": "expiry-bypass",
+      "test": "tests.test_runtime.RuntimeTests.test_attestation_expires_and_revokes_without_rewriting_verdict",
+      "exit_code": 1,
+      "detected": true,
+      "stdout": "",
+      "stderr": "test_attestation_expires_and_revokes_without_rewriting_verdict (tests.test_runtime.RuntimeTests.test_attestation_expires_and_revokes_without_rewriting_verdict) ... FAIL\n\n======================================================================\nFAIL: test_attestation_expires_and_revokes_without_rewriting_verdict (tests.test_runtime.RuntimeTests.test_attestation_expires_and_revokes_without_rewriting_verdict)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmprjtrtbwc/tests/test_runtime.py\", line 184, in test_attestation_expires_and_revokes_without_rewriting_verdict\n    self.assertEqual(self.loop.attestation_status(att.id,self.owner),'EXPIRED')\nAssertionError: 'VALID' != 'EXPIRED'\n- VALID\n+ EXPIRED\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.051s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "name": "dependency-bypass",
+      "test": "tests.test_composition.CompositionTests.test_failed_dependency_prevents_parent_execution",
+      "exit_code": 1,
+      "detected": true,
+      "stdout": "",
+      "stderr": "test_failed_dependency_prevents_parent_execution (tests.test_composition.CompositionTests.test_failed_dependency_prevents_parent_execution) ... FAIL\n\n======================================================================\nFAIL: test_failed_dependency_prevents_parent_execution (tests.test_composition.CompositionTests.test_failed_dependency_prevents_parent_execution)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmpo4vbbx78/tests/test_composition.py\", line 39, in test_failed_dependency_prevents_parent_execution\n    self.assertEqual(result.outcome,'UNKNOWN');self.assertEqual(result.task.actions,0)\n                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != 0\n\n----------------------------------------------------------------------\nRan 1 test in 0.082s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "name": "unknown-is-violation",
+      "test": "tests.test_runtime_guards.RuntimeGuardTests.test_unknown_invariant_is_unknown_and_rolled_back",
+      "exit_code": 1,
+      "detected": true,
+      "stdout": "",
+      "stderr": "test_unknown_invariant_is_unknown_and_rolled_back (tests.test_runtime_guards.RuntimeGuardTests.test_unknown_invariant_is_unknown_and_rolled_back) ... FAIL\n\n======================================================================\nFAIL: test_unknown_invariant_is_unknown_and_rolled_back (tests.test_runtime_guards.RuntimeGuardTests.test_unknown_invariant_is_unknown_and_rolled_back)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/tmpgvh5lvxj/tests/test_runtime_guards.py\", line 26, in test_unknown_invariant_is_unknown_and_rolled_back\n    self.assertEqual(result.outcome,'UNKNOWN');self.assertFalse(result.task.historical_violation)\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'FAILURE' != 'UNKNOWN'\n- FAILURE\n+ UNKNOWN\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.038s\n\nFAILED (failures=1)\n"
+    }
+  ],
+  "source_sha256": {
+    "vcp/__init__.py": "35e997be6819b618505b1d9d0b05d5d0fdf2d1766711fffb842d62388d0136e7",
+    "vcp/__main__.py": "975c210b9477db87f604ba253ccbdc30ff39918e3b9c0f4f8344672bd3c2f822",
+    "vcp/api.py": "462b7e989a1da921ff2745556a9eb2db90c82dff0b85a4754ea11c3385f1d814",
+    "vcp/audit.py": "e8855ff386736d947961f58332029a269e5ec51c84ec367ae4aca1795ab4169e",
+    "vcp/composition.py": "90469594b8a1ec212e0e87009bc345ce22df3a3f213e0df859dab3dd8d6c8d73",
+    "vcp/engine.py": "13a746e34de32b3081551d3a251fbd221b60b5c494986db986ad7b374aabc7a1",
+    "vcp/evidence.py": "c3305c9ca3014b04ca3bed99408cb92f6486219938895211b404dceb52a09d9b",
+    "vcp/integrations/__init__.py": "b9d2b1b35c8a5253b8042b553681795c1562928972cc7c54f79643f37a8c512e",
+    "vcp/integrations/legacy.py": "e750121c078cd24736bf16ecfa02d6776c41d5fda33fb7e6cb7283c8a289bd69",
+    "vcp/integrations/legacy_loop_models.py": "1d33d16bf2c03cc25783eb29e6033c5c2cdfb76d009852d4d3a150f1aaf4c41d",
+    "vcp/logic.py": "d6817e26283810ec02eb112e4c53c3961fcb1f11c0e6e482f19f12d7768adcee",
+    "vcp/loop_cli.py": "dc38f8d3885eb1b3b4f7040a684c8c7b61e4eef5b14d2ea13e935fde220a461e",
+    "vcp/models.py": "94ad4b750074cbc0eb129c77867dcaaa9c952eb37a2a51153d61fb7a2808ce9f",
+    "vcp/planning.py": "ce71c493c16d3b36db20a97ff878af49b420232596699726a58b6b377637a377",
+    "vcp/reconciliation.py": "0bdc48169c64a5ffec26fa2e4a695fb26cb77a7bc3ce6fe8ba1f164d8a9af77c",
+    "vcp/runtime.py": "40e4dfac1fb8aa04afcf77ee7708646f0c44a191c555d82007f7743fb8761a77",
+    "vcp/runtime_models.py": "ac29027337db027afd3312a2dbe654c863e7fd5991204a1a0736347739873455",
+    "vcp/security.py": "7c49c80a827fc9e35d86e0c09abbae0ca047030429f2dcaa1a5bf9374cd79543",
+    "vcp/storage.py": "b5e54c6821a41dd25ca38afe5ca3b56d4f6308ce6f6688d3dcd06bab428e3d23"
+  },
+  "limitations": [
+    "Synthetic local SQLite resource only",
+    "Sampled boundary and point predicates, not continuous historical invariants",
+    "Public fixture keys; same-process logical roles",
+    "No real infrastructure, money, external adapters or LLM calls"
+  ]
+}

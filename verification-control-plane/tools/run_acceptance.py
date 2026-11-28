@@ -161,7 +161,9 @@ def main():
     (output/"approved_contract.json").write_text(reference_contract().model_dump_json(indent=2)+"\n")
     commands=[run_command([sys.executable,"tools/run_coverage.py","--output",str(output/"coverage")]),
               run_command([sys.executable,"integrations/contract_loop_reference/validate_graph_package.py"]),
-              run_command([sys.executable,"tools/validate_schema.py"])]
+              run_command([sys.executable,"tools/validate_schema.py"]),
+              run_command([sys.executable,"tools/validate_runtime_schema.py"]),
+              run_command([sys.executable,"tools/run_loop_acceptance.py","--output",str(output/"runtime")])]
     mutations=mutation_checks()
     bench=benchmark(output)
     commands.append(run_command([sys.executable,"tools/replay_audit.py","--database",str(output/"benchmark.sqlite"),

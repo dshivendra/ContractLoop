@@ -1,5 +1,18 @@
 # Acceptance test specification
 
+## Current controlled-loop extension
+
+The original Phase 1 scenarios below remain unchanged. The combined gate now also
+runs the controlled-loop/API/CLI regression suites, validates three runtime schemas,
+executes 21 runtime benchmark cases across seven scenarios and checks eight isolated
+runtime guard mutations. `tools/run_acceptance.py` includes all these checks and
+records source hashes/commands. `tools/run_loop_acceptance.py` can run the runtime
+campaign separately. Read-only `audit_loop` checks the append-only trajectory,
+mutable projections, receipt bindings and kernel replay without re-executing effects.
+Only assertion failures count as detected mutations; import/infrastructure errors do not.
+
+## Verification kernel reference
+
 Run `python -m unittest discover -v` and `python tools/run_acceptance.py` as in README.
 Tests read synthetic fixtures independently from executor claims; expected business
 outcomes are fixed in golden cases and a separate row-level generated-case oracle.

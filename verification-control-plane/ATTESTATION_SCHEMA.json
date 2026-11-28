@@ -1,0 +1,158 @@
+{
+  "$defs": {
+    "DependencyState": {
+      "additionalProperties": false,
+      "properties": {
+        "valid_until": {
+          "minimum": 0,
+          "title": "Valid Until",
+          "type": "integer"
+        },
+        "task_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Task Id",
+          "type": "string"
+        },
+        "contract_hash": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Contract Hash",
+          "type": "string"
+        },
+        "snapshot_hash": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Snapshot Hash",
+          "type": "string"
+        },
+        "state_version": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "State Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "valid_until",
+        "task_id",
+        "contract_hash",
+        "snapshot_hash",
+        "state_version"
+      ],
+      "title": "DependencyState",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Id",
+      "type": "string"
+    },
+    "tenant": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Tenant",
+      "type": "string"
+    },
+    "task_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Task Id",
+      "type": "string"
+    },
+    "execution_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Execution Id",
+      "type": "string"
+    },
+    "contract_hash": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Contract Hash",
+      "type": "string"
+    },
+    "kernel_contract_hash": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Kernel Contract Hash",
+      "type": "string"
+    },
+    "verdict_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Verdict Id",
+      "type": "string"
+    },
+    "snapshot_hash": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Snapshot Hash",
+      "type": "string"
+    },
+    "state_version": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "State Version",
+      "type": "string"
+    },
+    "observed_at": {
+      "minimum": 0,
+      "title": "Observed At",
+      "type": "integer"
+    },
+    "dependencies": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/DependencyState"
+      },
+      "title": "Dependencies",
+      "type": "array"
+    },
+    "issued_at": {
+      "minimum": 0,
+      "title": "Issued At",
+      "type": "integer"
+    },
+    "expires_at": {
+      "minimum": 0,
+      "title": "Expires At",
+      "type": "integer"
+    },
+    "signer": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Signer",
+      "type": "string"
+    },
+    "signature": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Signature",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "tenant",
+    "task_id",
+    "execution_id",
+    "contract_hash",
+    "kernel_contract_hash",
+    "verdict_id",
+    "snapshot_hash",
+    "state_version",
+    "observed_at",
+    "issued_at",
+    "expires_at",
+    "signer",
+    "signature"
+  ],
+  "title": "Attestation",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

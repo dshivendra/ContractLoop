@@ -1,5 +1,20 @@
 # Domain model and serialization
 
+## Current controlled-loop extension
+
+Current runtime additions are immutable typed models in `runtime_models.py`:
+Intent, Context, Principal, ExecutionContract, ExecutionApproval, Task, Action,
+Receipt, LoopResult, Attestation, Dependency, Composition, DependencyState and
+RevisionProposal. Kernel models below are retained. Execution contracts pin a
+kernel contract and approval; tasks pin an execution hash. Actions additionally
+bind actor, resource, execution, expected state/snapshot and idempotency key.
+Attestations bind kernel verdict, snapshot, child states and validity interval.
+Event/state snapshots form the append-only trajectory; Task is its mutable
+projection, checked by the read-only runtime auditor. Actual committed schemas
+are EXECUTION_SCHEMA.json, ATTESTATION_SCHEMA.json and COMPOSITION_SCHEMA.json.
+
+## Verification kernel reference
+
 Implemented public data models are immutable Pydantic models, reject unknown fields
 and serialize through JSON. Scalar facts are strict bool/int/str. IDs are nonempty
 strings of at most 200 characters; integer versions and epoch-second times are strict.

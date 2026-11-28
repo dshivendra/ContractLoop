@@ -8,6 +8,7 @@ from pathlib import Path
 import runpy
 import sys
 import trace
+import threading
 import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -25,7 +26,10 @@ def main():
         if result.wasSuccessful():
             with redirect_stdout(io.StringIO()):runpy.run_module("vcp",run_name="__main__")
         return result
-    result=tracer.runfunc(run)
+    prior_thread_trace=threading.gettrace()
+    threading.settrace(tracer.globaltrace)
+    try:result=tracer.runfunc(run)
+    finally:threading.settrace(prior_thread_trace)
     counts=tracer.results().counts;rows=[]
     for path in sorted((ROOT/"vcp").rglob("*.py")):
         # CPython's trace implementation provides executable source line discovery.

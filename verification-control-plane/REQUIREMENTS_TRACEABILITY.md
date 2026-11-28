@@ -1,5 +1,24 @@
 # Requirements traceability
 
+## Current controlled-loop extension
+
+The Phase 1 mappings below remain historical kernel traceability. The current
+runtime requirements→implementation→tests mapping is:
+
+| Requirement | Source | Regression evidence |
+|---|---|---|
+| Draft/context/approval | planning.py, runtime_models.py, runtime.py | test_api draft/approval flow; changed-contract rejection |
+| Controlled action and durable recovery | runtime.py, storage.py | test_runtime CAS, idempotency, lost ACK, atomic rollback, bounded retry |
+| Invariants, budgets, termination | runtime.py | test_runtime and test_runtime_guards UNKNOWN/violation, timeout, duration, budget tests |
+| Composition and global predicates | composition.py, runtime.py | test_composition parent proof, conditional/failed dependencies, global violation |
+| Attestation and revocation | runtime.py | freshness, drift, expiry, tampering and monitor tests |
+| API and audit | api.py, audit.py, loop_cli.py | test_api auth/body/input/CLI; test_runtime_guards trajectory tampering |
+| Learning governance | runtime.py | revision proposal remains unapproved and hash unchanged |
+
+LOOP_MVP_REPORT.md records production boundaries and final machine evidence.
+
+## Verification kernel reference
+
 | Requirement | Implementation | Evidence / status |
 |---|---|---|
 | Inspect baseline/reuse | Empty workspace inspected; handoff baseline commit; two earlier source packages reviewed | INTEGRATION_REPORT; implemented |

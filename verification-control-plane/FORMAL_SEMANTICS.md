@@ -1,5 +1,22 @@
 # Formal semantics
 
+## Current controlled-loop extension
+
+This document specifies the unchanged `vcp-kernel/0.1.1` point verifier.
+Package 0.2.0 additionally implements `controlled-loop/0.2.0`. Statements below
+about deferred runtime execution/attestations describe the kernel alone.
+Runtime preconditions authorize an action only on TRUE; UNKNOWN prevents execution.
+Runtime invariant FALSE rolls back the effect and records a sticky historical
+violation; UNKNOWN rolls back and remains UNKNOWN. Completed SUCCESS requires
+independent kernel success and applicable dependency/global checks. A lifecycle
+state named completed can also carry FAILURE; execution completion is not success.
+A certificate additionally requires a completed SUCCESS, no sticky violation,
+valid approval, current matching evidence and freshness/deadline bounds. VALID is
+a separate sampled present-tense property; expiry/revocation never rewrites history.
+No general temporal logic or unobserved intermediate-history proof is introduced.
+
+## Verification kernel reference
+
 Truth values are T (established), F (demonstrated false), U (insufficient).
 
 | AND | F | U | T |

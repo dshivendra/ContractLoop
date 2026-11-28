@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "engine_version": "vcp-kernel/0.1.1",
+  "fault_injections": {
+    "bench/fault/0": "predicate-runtime-error",
+    "bench/fault/1": "predicate-runtime-error",
+    "bench/fault/2": "predicate-runtime-error",
+    "bench/fault/3": "predicate-runtime-error",
+    "bench/fault/4": "predicate-runtime-error"
+  }
+}

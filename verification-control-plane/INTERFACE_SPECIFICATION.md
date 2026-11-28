@@ -1,5 +1,17 @@
 # Phase 1 interfaces
 
+## Current controlled-loop extension
+
+The kernel interfaces below remain supported. Package 0.2.0 also exposes
+LoopStore, LoopController, ActionGateway and SQLiteReconciliationAdapter; typed
+planning and composition helpers; `audit_loop`; a standalone `vcp.loop_cli` module;
+and the loopback server in `vcp.api`. LOOP_API.md is the current route and role
+specification. Compilation, owner approval, task creation, execution, independent
+verification and attestation remain explicit operations. The old `python -m vcp`
+demo remains verification-only for backward compatibility.
+
+## Verification kernel reference
+
 These are concrete Python functions/classes, not a service scaffold. JSON models
 and exact schemas define the portable boundary; no cloud/MCP dependency is required.
 

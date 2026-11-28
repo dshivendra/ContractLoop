@@ -1,29 +1,21 @@
-# Implementation plan and phase boundary
+# Delivered controlled-loop scope and production boundary
 
-Phase 1 implementation delivered: immutable Pydantic contracts/approval, restricted
-AST and bounded consistency validation, tri-valued verification, signed scoped
-evidence/freshness/conflict resolution, durable SQLite audit, legacy claim adapters,
-synthetic reconciliation collector, independent acceptance and mutation campaign.
+Phase 1 passed its synthetic acceptance gate and was merged in PR #1. The owner
+then authorized completing ContractLoop. The delivered 0.2.0 local MVP wraps the
+unchanged independent kernel with approved execution, durable lifecycle/gateway,
+CAS/idempotency, atomic effect receipts, bounded recovery, conditional dependency
+DAGs, independent parent verification, signed expiring attestations, sampled drift
+revocation, context/draft compilation, a loopback API/CLI and unapproved learning
+proposals. LOOP_MVP_REPORT.md and LOOP_API.md define the supported behavior.
 
-Run evidence and remaining limitations are in FINAL_EVIDENCE_REPORT.md. Before any
-Phase 2 authorization, review the synthetic gate and agree the first real adapter's
-authoritative data, ownership, trust boundaries, input baseline and acceptance checks.
-Do not automatically proceed beyond Phase 1.
+The default recipe is synthetic SQLite reconciliation. The combined acceptance
+command is `python tools/run_acceptance.py --output NEW_EMPTY_DIRECTORY`. It runs
+kernel and runtime tests, schemas, benchmarks, mutations and replay, and records
+actual source hashes. Historical Phase 1 reports and evidence are preserved.
 
-Future work retained without implementation: Phase 2 durable lifecycle/action
-gateway, preventive authorization, budgets, CAS/idempotency and recovery; Phase 3
-composition/global outcomes and attestations with expiry/revocation; Phase 4 context
-and natural-language compilation with independent validation; Phase 5 organization
-adapters/API/isolation/production hardening. No cloud/LLM/orchestrator selection is
-required until a concrete test justifies it.
-
-Semantic change requires the handoff's deficiency, reproducible failing scenario,
-impacted invariants, alternatives, compatibility assessment, tests and owner approval.
-Adding dependencies or adapters must preserve the contract hash and truth semantics.
-
-Phase 1 completion audit (engine 0.1.1): the remaining reproduced evidence and
-collector defects are fixed; standalone readonly replay, explicit fault plans,
-line coverage and updated reproducible evidence are delivered. No outstanding
-Phase 1 code defect is known from the completed gate. See FINAL_EVIDENCE_REPORT.md
-for actual results and exact limitations. Shipping automation remains paused;
-review/merge and later phases are separate decisions.
+Remaining production engineering requires an explicitly chosen real adapter and
+its authoritative state, identity/key custody, isolated authorities, operational
+quotas/monitoring, external effect idempotency/compensation and distributed resource
+semantics. General natural-language compilation and arbitrary temporal verification
+remain unsupported. No production service or cloud infrastructure is deployed.
+Optional ontology integration and autonomous shipping remain paused.

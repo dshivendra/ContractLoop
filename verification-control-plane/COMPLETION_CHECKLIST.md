@@ -1,4 +1,4 @@
-# Phase 1 completion checklist
+# Historical Phase 1 completion checklist
 
 - [x] Inspect frozen scope, current source, PR and independent review findings.
 - [x] Reproduce mixed-snapshot false success before changing implementation.
@@ -9,7 +9,9 @@
 - [x] Measure executable-line coverage and retain uncovered lines.
 - [x] Refresh acceptance/architecture/trust/invariant traceability and evidence report.
 - [x] Preserve prior verdicts, reports and evidence.
-- [x] Keep shipping automation paused and Phases 2–5 deferred.
+- [x] Keep shipping automation paused and later phases deferred during Phase 1.
+
+Current owner-authorized local execution extensions are tracked in LOOP_MVP_REPORT.md.
 
 Remote CI and the final pushed commit are recorded in the PR and final response.
 Human review/merge is a separate repository step, not an unimplemented kernel feature.
